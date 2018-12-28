@@ -15,8 +15,8 @@ const FILTER_VALUES = (Object.keys(TodoModel.Filter) as (keyof typeof TodoModel.
 
 const FILTER_FUNCTIONS: Record<TodoModel.Filter, (todo: TodoModel) => boolean> = {
   [TodoModel.Filter.SHOW_ALL]: () => true,
-  [TodoModel.Filter.SHOW_ACTIVE]: (todo) => !todo.completed,
-  [TodoModel.Filter.SHOW_COMPLETED]: (todo) => todo.completed
+  [TodoModel.Filter.SHOW_ACTIVE]: (todo: TodoModel) => !todo.completed,
+  [TodoModel.Filter.SHOW_COMPLETED]: (todo: TodoModel) => todo.completed
 };
 
 export namespace App {
