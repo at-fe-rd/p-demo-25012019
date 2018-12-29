@@ -14,12 +14,15 @@ var WebpackCleanupPlugin = require('webpack-cleanup-plugin');
 module.exports = {
   context: sourcePath,
   entry: {
-    app: './main.tsx'
+    app: './main.tsx',
+    styles: [
+      './stylesheet/style.scss'
+    ]
   },
   output: {
     path: outPath,
     filename: 'bundle.js',
-    chunkFilename: '[chunkhash].js'
+    chunkFilename: '[name].js'
   },
   target: 'web',
   resolve: {
@@ -46,37 +49,16 @@ module.exports = {
       },
       // css
       {
-        test: /\.css$/,
+        test: /\.scss$/,
         use: [
-          isProduction ? MiniCssExtractPlugin.loader : 'style-loader',
-          {
-            loader: 'css-loader',
-            query: {
-              modules: true,
-              sourceMap: !isProduction,
-              importLoaders: 1,
-              localIdentName: isProduction ? '[hash:base64:5]' : '[local]__[hash:base64:5]'
-            }
-          },
-          {
-            loader: 'postcss-loader',
-            options: {
-              ident: 'postcss',
-              plugins: [
-                require('postcss-import')({ addDependencyTo: webpack }),
-                require('postcss-url')(),
-                require('postcss-preset-env')({
-                  /* use stage 2 features (defaults) */
-                  stage: 2,
-                }),
-                require('postcss-reporter')(),
-                require('postcss-browser-reporter')({
-                  disabled: isProduction
-                })
-              ]
-            }
+          MiniCssExtractPlugin.loader, {
+          loader: "css-loader"
+        }, {
+          loader: "sass-loader",
+          options: {
+            sourceMap: true
           }
-        ]
+        }]
       },
       // static assets
       { test: /\.html$/, use: 'html-loader' },
@@ -107,12 +89,13 @@ module.exports = {
       DEBUG: false
     }),
     new WebpackCleanupPlugin(),
+    // new ExtractTextPlugin('style.css'),
     new MiniCssExtractPlugin({
       filename: '[contenthash].css',
       disable: !isProduction
     }),
     new HtmlWebpackPlugin({
-      template: 'assets/index.html'
+      template: 'index.html'
     })
   ],
   devServer: {

@@ -7,11 +7,10 @@ export namespace Footer {
 }
 
 export class Footer extends React.Component<Footer.Props> {
-
   render() {
     return (
-      <footer>
-        This is footer.
+      <footer className="footer">
+        <p>© Asian Tech 2018 All Rights Reserved</p>
       </footer>
     );
   }

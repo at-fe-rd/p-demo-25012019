@@ -4,7 +4,7 @@ import * as React from 'react';
 import { RouteComponentProps } from 'react-router';
 // import { omit } from 'app/utils';
 import { Header, Footer } from 'app/components/layout';
-import { CharactorList, } from 'app/features/charactor/components/charactor-list';
+import { CharactorContainer } from 'app/features/charactor/components/charactor-container';
 
 export namespace App {
   export interface Props extends RouteComponentProps<void> {
@@ -30,9 +30,9 @@ export class App extends React.Component<App.Props> {
 
   render() {
     return (
-      <div>
+      <div className="page-wrap">
         <Header />
-        <CharactorList />
+        <CharactorContainer />
         <Footer />
       </div>
     );

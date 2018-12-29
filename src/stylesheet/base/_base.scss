@@ -1,0 +1,23 @@
+* {
+  box-sizing: border-box;
+}
+body {
+  background: map-get($color, white);
+  font-family: map-get($font-family, body);
+}
+h2 {
+  font-size: map-get($font-size, lg);
+}
+h1, h2, h3, h4, h5, h6 {
+  font-family: map-get($font-family, body);
+  color: map-get($color, secondary);
+  line-height: 34px;
+  font-weight: 400;
+  margin: 0 0 15px;
+}
+p {
+  color: map-get($color, secondary);
+  font-size: map-get($font-size, normal);
+  line-height: 24px;
+  margin: 0 0 15px;
+}

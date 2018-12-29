@@ -1,0 +1,77 @@
+button, .btn {
+  @include transition(all 500ms ease);
+  @include border-radius(3px);
+  border: 1px solid map-get($color, primary);
+  background-color: map-get($color, primary);
+  color: map-get($color, white);
+  padding: 12px 30px;
+  outline: none;
+  text-decoration: none;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  text-transform: uppercase;
+  zoom: 1;
+}
+.btn-primary {
+  color: map-get($color, white);
+  border-color: map-get($color, primary);
+  background-color: map-get($color, primary);
+}
+.btn-default {
+  border-color: map-get($color, border);
+  color: map-get($color, secondary);
+  background: transparent;
+  &:hover {
+    border-color: map-get($color, border);
+    color: map-get($color, secondary);
+    background-color: map-get($color, white);
+  }
+}
+.btn-sm {
+  padding: 6px 8px;
+  font-size: map-get($font-size, sm);
+}
+.btn-style-1 {
+  &:hover {
+    color: map-get($color, primary);
+    border-color: map-get($color, primary);
+    background-color: map-get($color, white);
+  }
+}
+.btn-style-2 {
+  position: relative;
+  z-index: 2;
+  padding: 20px 30px;
+  &:after {
+    @include transition(all 0.3s ease 0s);
+    @include border-radius(5px);
+    content: "";
+    height: 100%;
+    left: 0;
+    top: 0;
+    width: 0;
+    position: absolute;
+    z-index: -1;
+    background: map-get($color, hover-color);
+  }
+  &:hover {
+    &:after {
+      width: 100%;
+    }
+  }
+}
+.group-button {
+  text-align: center;
+  .btn {
+    margin-left: 20px;
+  }
+  .btn-medium {
+    width: 160px;
+    position: relative;
+    i {
+      position: absolute;
+      left: 15px;
+    }
+  }
+}

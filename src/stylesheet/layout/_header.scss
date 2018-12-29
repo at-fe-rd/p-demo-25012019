@@ -1,0 +1,11 @@
+
+.page-header {
+  // @include box-shadow( 0 2px 5px 0 map-get($color, rgba-black));
+  background: map-get($color, white-c);
+  padding: 20px 0;
+  text-align: center;
+}
+.logo {
+  height: 40px;
+  width: auto;
+}

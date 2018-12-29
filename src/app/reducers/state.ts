@@ -1,7 +1,7 @@
 import { TodoModel, CharactorModel } from 'app/models';
 
 export interface RootState {
-  // todos: RootState.TodoState;
+  todos: RootState.TodoState;
   router?: any;
 }
 
