@@ -1,7 +1,7 @@
-import { todoReducer } from './book/book.reducers';
+import { characterReducer } from './charactor/charactor.reducers';
 
 // NOTE: current type definition of Reducer in 'redux-actions' module
 // doesn't go well with redux@4
 export const featureReducer: any = {
-  todos: todoReducer as any
+  pageData: characterReducer as any
 }

@@ -1,10 +1,11 @@
 /** CharactorMVC model definitions **/
 
 export interface CharactorModel {
-  id: number;
+  id?: number;
   name: string;
-  age: string;
-  comment: string;
+  age: number;
+  comment?: string;
+  [key:string]: any;
 }
 
 export namespace CharactorModel {

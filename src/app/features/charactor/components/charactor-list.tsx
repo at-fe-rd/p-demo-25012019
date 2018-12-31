@@ -3,14 +3,14 @@ import { CharacterItem } from './charactor-item';
 
 export namespace CharactorList {
   export interface Props {
-    //
+    data: any;
   }
 }
 
 export class CharactorList extends React.Component<CharactorList.Props> {
   
   render() {
-    const {  } = this.props;
+    const { data } = this.props;
     return (
       <section className="list-users">
         <h2 className="home-title">Characters</h2>
@@ -26,7 +26,9 @@ export class CharactorList extends React.Component<CharactorList.Props> {
             </tr>
           </thead>
           <tbody>
-            <CharacterItem />
+            {data.map((item: any, i: number) => (
+              <CharacterItem key={item.id} character={item} />
+            ))}
           </tbody>
         </table>
         <div className="view-more center-text">

@@ -1,27 +1,29 @@
 import * as React from 'react';
-// import { connect } from 'react-redux';
-// import { bindActionCreators, Dispatch } from 'redux';
+import { connect } from 'react-redux';
+import { bindActionCreators, Dispatch } from 'redux';
 import { RouteComponentProps } from 'react-router';
-// import { omit } from 'app/utils';
+import { RootState } from 'app/reducers';
+import { omit } from 'app/utils';
 import { Header, Footer } from 'app/components/layout';
-import { CharactorContainer } from 'app/features/charactor/components/charactor-container';
+import { CharactorActions } from 'app/features/charactor/charactor.actions';
+import { CharactorForm } from 'app/features/charactor/components/charactor-form';
+import { CharactorList } from 'app/features/charactor/components/charactor-list';
 
 export namespace App {
   export interface Props extends RouteComponentProps<void> {
-    //
+    pageData: RootState;
+    actions: CharactorActions;
   }
 }
 
-// @connect(
-//   (state: RootState, ownProps): Pick<App.Props, 'todos' | 'filter'> => {
-//     const hash = ownProps.location && ownProps.location.hash.replace('#', '');
-//     const filter = FILTER_VALUES.find((value) => value === hash) || TodoModel.Filter.SHOW_ALL;
-//     return { todos: state.todos, filter };
-//   },
-//   (dispatch: Dispatch): Pick<App.Props, 'actions'> => ({
-//     actions: bindActionCreators(omit(TodoActions, 'Type'), dispatch)
-//   })
-// )
+@connect(
+  (state: any, ownProps): Pick<App.Props, 'pageData'> => {
+    return { pageData: state.pageData };
+  },
+  (dispatch: Dispatch): Pick<App.Props, 'actions'> => ({
+    actions: bindActionCreators(omit(CharactorActions, 'Type'), dispatch)
+  })
+)
 export class App extends React.Component<App.Props> {
 
   constructor(props: App.Props, context?: any) {
@@ -29,10 +31,14 @@ export class App extends React.Component<App.Props> {
   }
 
   render() {
+    const { pageData, actions } = this.props;
     return (
       <div className="page-wrap">
         <Header />
-        <CharactorContainer />
+        <div className="container">
+          <CharactorForm onSave={actions.newCharactor} />
+          <CharactorList data={pageData} />
+        </div>
         <Footer />
       </div>
     );
