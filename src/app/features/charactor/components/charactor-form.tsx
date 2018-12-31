@@ -33,6 +33,9 @@ export class CharactorForm extends React.Component<CharactorForm.Props, Characto
     e.preventDefault();
     this.setState({ isProcessing: true });
     this.props.onSave(this.state.fields);
+    setTimeout(() => {
+      this.setState({ isProcessing: false, fields: {}, errors: {} });
+    }, 1000);
   }
 
   handleChange = (e: any) => {
@@ -72,7 +75,7 @@ export class CharactorForm extends React.Component<CharactorForm.Props, Characto
             <div className="group-button col-12">
               <button type="button" className="btn btn-default btn-style-1">登録</button>
               <button id="js-btn-submit" type="submit" className="btn btn-primary btn-style-1" disabled={this.state.isProcessing}>
-                {/* <i className="fa fa-spinner fa-spin" id="js-load"></i>  */}
+                <i className="fa fa-spinner fa-spin" id="js-load"></i> 
                 キャンセル
               </button>
             </div>

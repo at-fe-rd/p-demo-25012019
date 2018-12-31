@@ -13,6 +13,13 @@ button, .btn {
   text-transform: uppercase;
   zoom: 1;
 }
+button:disabled,
+button[disabled]{
+  border: 1px solid #999999 !important;
+  background-color: #cccccc !important;
+  color: #666666 !important;
+  cursor: not-allowed;
+}
 .btn-primary {
   color: map-get($color, white);
   border-color: map-get($color, primary);

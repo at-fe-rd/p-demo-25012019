@@ -37,7 +37,7 @@ export class App extends React.Component<App.Props> {
         <Header />
         <div className="container">
           <CharactorForm onSave={actions.newCharactor} />
-          <CharactorList data={pageData} />
+          <CharactorList data={pageData} onDelete={actions.deleteCharactor} onUpdate={actions.updateCharactor} />
         </div>
         <Footer />
       </div>

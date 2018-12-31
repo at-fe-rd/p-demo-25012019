@@ -28,6 +28,17 @@ export const characterReducer = handleActions<RootState.PageState, CharactorMode
       }
       return state;
     },
+    [CharactorActions.Type.UPDATE_CHARACTOR]: (state, action) => {
+      return state.map((item) => {
+        if (!item || !action || !action.payload) {
+          return item;
+        }
+        return (item.id || 0) === action.payload ? { ...item, age: ++item.age } : item;
+      });
+    },
+    [CharactorActions.Type.DELETE_CHARACTOR]: (state, action) => {
+      return state.filter((item: CharactorModel) => item.id !== (action.payload as any));
+    }
   },
   initialState
 );

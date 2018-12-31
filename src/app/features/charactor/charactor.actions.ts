@@ -9,7 +9,7 @@ export namespace CharactorActions {
   }
 
   export const newCharactor = createAction<PartialPick<CharactorModel, 'name'>>(Type.NEW_CHARACTOR);
-  export const updateCharactor = createAction<PartialPick<CharactorModel, 'id'>>(Type.UPDATE_CHARACTOR);
+  export const updateCharactor = createAction<CharactorModel['id']>(Type.UPDATE_CHARACTOR);
   export const deleteCharactor = createAction<CharactorModel['id']>(Type.DELETE_CHARACTOR);
 }
 

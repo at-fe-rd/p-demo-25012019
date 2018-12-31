@@ -2,11 +2,22 @@ import * as React from 'react';
 
 export namespace CharacterItem {
   export interface Props {
+    updateCharactor: (id: number) => void;
+    deleteCharactor: (id: number) => void;
     character: any;
   }
 }
 
 export class CharacterItem extends React.Component<CharacterItem.Props> {
+
+  
+  handleDelete = () => {
+    this.props.deleteCharactor(this.props.character.id);
+  }
+
+  handleUpdate = () => {
+    this.props.updateCharactor(this.props.character.id);
+  }
   
   render() {
     const { character } = this.props;
@@ -20,8 +31,8 @@ export class CharacterItem extends React.Component<CharacterItem.Props> {
           {character.comment}
         </td>
         <td className="col-1 no-wrap">
-          <button type="button" className="btn btn-default btn-sm">+1</button>
-          <button type="button" className="btn btn-default btn-sm">削除</button>
+          <button type="button" onClick={this.handleUpdate}  className="btn btn-default btn-sm">+1</button>
+          <button type="button" onClick={this.handleDelete} className="btn btn-default btn-sm">削除</button>
         </td>
       </tr>
     );

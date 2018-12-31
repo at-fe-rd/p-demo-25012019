@@ -3,6 +3,8 @@ import { CharacterItem } from './charactor-item';
 
 export namespace CharactorList {
   export interface Props {
+    onUpdate: (id: number) => void;
+    onDelete: (id: number) => void;
     data: any;
   }
 }
@@ -10,7 +12,7 @@ export namespace CharactorList {
 export class CharactorList extends React.Component<CharactorList.Props> {
   
   render() {
-    const { data } = this.props;
+    const { onDelete, onUpdate, data } = this.props;
     return (
       <section className="list-users">
         <h2 className="home-title">Characters</h2>
@@ -27,7 +29,11 @@ export class CharactorList extends React.Component<CharactorList.Props> {
           </thead>
           <tbody>
             {data.map((item: any, i: number) => (
-              <CharacterItem key={item.id} character={item} />
+              <CharacterItem 
+                key={item.id} 
+                character={item}
+                updateCharactor={onUpdate}
+                deleteCharactor={onDelete} />
             ))}
           </tbody>
         </table>
