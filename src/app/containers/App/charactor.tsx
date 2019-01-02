@@ -4,7 +4,7 @@ import { bindActionCreators, Dispatch } from 'redux';
 import { RouteComponentProps } from 'react-router';
 import { RootState } from 'app/reducers';
 import { omit } from 'app/utils';
-import { Header, Footer } from 'app/components/layout';
+import { Header, Footer } from 'app/components';
 import { CharactorActions } from 'app/features/charactor/charactor.actions';
 import { CharactorForm } from 'app/features/charactor/components/charactor-form';
 import { CharactorList } from 'app/features/charactor/components/charactor-list';
