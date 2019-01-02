@@ -14,7 +14,7 @@ export namespace CharactorForm {
 }
 
 export class CharactorForm extends React.Component<CharactorForm.Props, CharactorForm.State> {
-  
+
   constructor(props: CharactorForm.Props) {
     super(props);
     this.state = {
@@ -58,11 +58,13 @@ export class CharactorForm extends React.Component<CharactorForm.Props, Characto
           <div className="row">
             <div className="form-group col-7">
               <label className="form-label required">名前</label>
-              <input className="form-input" type="text" name="name" id="name" onChange={this.handleChange} value={this.state.fields['name']} />
+              <input className="form-input invalid" type="text" name="name" id="name" onChange={this.handleChange} value={this.state.fields['name']} />
+              <span id="name-error" className="error">This field is required</span>
             </div>
             <div className="form-group col-5">
               <label className="form-label required">年齢</label>
-              <input className="form-input" type="text" name="age" id="age" onChange={this.handleChange} value={this.state.fields['age']} />
+              <input className="form-input invalid" type="text" name="age" id="age" onChange={this.handleChange} value={this.state.fields['age']} />
+              <span id="age-error" className="error">This field is required</span>
             </div>
           </div>
           <div className="row">
@@ -74,8 +76,8 @@ export class CharactorForm extends React.Component<CharactorForm.Props, Characto
           <div className="row">
             <div className="group-button col-12">
               <button type="button" className="btn btn-default btn-style-1">登録</button>
-              <button id="js-btn-submit" type="submit" className="btn btn-primary btn-style-1" disabled={this.state.isProcessing}>
-                <i className="fa fa-spinner fa-spin" id="js-load"></i> 
+              <button id="js-btn-submit" type="submit" className="btn btn-primary btn-style-1 btn-medium" disabled={this.state.isProcessing}>
+                <i className="fa fa-spinner fa-spin" id="js-load"></i>
                 キャンセル
               </button>
             </div>

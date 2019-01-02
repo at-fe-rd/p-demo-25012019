@@ -6,16 +6,41 @@ textarea {
   border: none;
   width: 100%;
 }
-.form-label {
-  margin-bottom: 10px;
-  display: inline-block;
-}
-.required {
-  position: relative;
-  &:after {
-  content: '*';
-  margin-left: 5px;
-  color: map-get($color, red);
+.form-group {
+  margin-bottom: 25px;
+  .form-label {
+    margin-bottom: 10px;
+    display: inline-block;
+  }
+  .required {
+    position: relative;
+    &:after {
+    content: '*';
+    margin-left: 5px;
+    color: map-get($color, red);
+    }
+  }
+  .invalid {
+    border: 1px solid map-get($color, red);
+  }
+  .error {
+    @include border-radius(3px);
+    background: map-get($color, red);
+    color: map-get($color, white);
+    padding: 5px 10px;
+    position: relative;
+    &:before {
+      content: "";
+      display:block;
+      width: 0;
+      height: 0;
+      position: absolute;
+      border-left: 8px solid transparent;
+      border-right: 8px solid transparent;
+      border-bottom: 8px solid map-get($color, red);
+      left: 10px;
+      top: -6px;
+    }
   }
 }
 .form-input,
@@ -26,5 +51,5 @@ textarea {
   border: 1px solid map-get($color, border);
   background: map-get($color, white);
   padding: 8px 8px;
-  margin-bottom: 25px;
+  margin-bottom: 13px;
 }

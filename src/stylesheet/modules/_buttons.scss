@@ -78,7 +78,13 @@ button[disabled]{
     position: relative;
     i {
       position: absolute;
-      left: 15px;
+      left: 18px;
+      font-size: 16px;
+    }
+    &:not([disabled]) {
+      i {
+        display: none;
+      }
     }
   }
 }
