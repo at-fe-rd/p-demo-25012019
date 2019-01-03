@@ -55,7 +55,7 @@ export class CharactorForm extends React.Component<CharactorForm.Props, Characto
   }
 
   register = (data: CharacterModel) => {
-    API.post('/users', data).then(res => {
+    API.post('/users', data).then((res: any) => {
       this.props.onSave(res.data);
     });
   }
