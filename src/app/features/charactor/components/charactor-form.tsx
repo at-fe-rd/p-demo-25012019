@@ -54,8 +54,8 @@ export class CharactorForm extends React.Component<CharactorForm.Props, Characto
     }, 1000);
   }
 
-  register = async (data: CharacterModel) => {
-    await API.post('/users', data).then(res => {
+  register = (data: CharacterModel) => {
+    API.post('/users', data).then(res => {
       this.props.onSave(res.data);
     });
   }
