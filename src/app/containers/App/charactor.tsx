@@ -4,7 +4,7 @@ import { bindActionCreators, Dispatch } from 'redux';
 import { RouteComponentProps } from 'react-router';
 import { RootState } from 'app/reducers';
 import { omit } from 'app/utils';
-import { Header, Footer } from 'app/components';
+import { Header, Footer, Alert } from 'app/components';
 import { CharacterActions } from 'app/features/charactor/charactor.actions';
 import { CharactorForm } from 'app/features/charactor/components/charactor-form';
 import { CharactorList } from 'app/features/charactor/components/charactor-list';
@@ -32,8 +32,10 @@ export class App extends React.Component<App.Props> {
 
   render() {
     const { pageData, actions } = this.props;
+    let notification: any = {};
     return (
       <div className="page-wrap">
+        <Alert notification={notification} />
         <Header />
         <div className="container">
           <CharactorForm onSave={actions.newCharactor} />
