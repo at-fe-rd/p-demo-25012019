@@ -1,11 +1,12 @@
 import * as React from 'react';
 import { CharacterItem } from './charactor-item';
 import { API } from 'app/utils/api';
+import { CharacterModel } from 'app/models/CharacterModel';
 
 export namespace CharactorList {
   export interface Props {
     onRefresh: (data: any) => void;
-    onUpdate: (id: number) => void;
+    onUpdate: (character: CharacterModel) => void;
     onDelete: (id: number) => void;
     data: any;
   }
@@ -35,11 +36,11 @@ export class CharactorList extends React.Component<CharactorList.Props> {
         <table className="table table-striped table-vm">
           <thead>
             <tr>
-              <th className="col-4 no-wrap">
+              <th className="col-3 no-wrap">
                 <span>名前</span>
                 <span> (年齢)</span>
               </th>
-              <th className="col-7 comment">コメント</th>
+              <th className="col-8 comment">コメント</th>
               <th className="col-1 no-wrap">アクション</th>
             </tr>
           </thead>

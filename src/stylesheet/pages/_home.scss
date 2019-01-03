@@ -2,13 +2,9 @@
   padding: 40px 160px;
   background: map-get($color, white-c);
   margin: 60px 0;
-  // border-radius: 5px;
   border: 1px solid map-get($color, border);
-  // border-bottom: 2px solid map-get($color, border);
-  // margin-bottom: 1px;
 }
 .list-users {
-  // border-top: 1px solid map-get($color, border);
   margin: 60px 0;
 }
 .home-title {
@@ -20,7 +16,7 @@
 }
 .comment {
   white-space: pre;
-  line-height: 1.2;
+  line-height: 1.4;
 }
 .alert {
   @include border-radius(4px);
