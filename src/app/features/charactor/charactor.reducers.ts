@@ -1,20 +1,24 @@
 import { handleActions } from 'redux-actions';
 import { RootState } from 'app/reducers/state';
-import { CharactorActions } from './charactor.actions';
-import { CharactorModel } from 'app/models';
+import { CharacterActions } from './charactor.actions';
+import { CharacterModel } from 'app/models';
+// import { API } from 'app/utils/api';
 
 const initialState: RootState.PageState = [
   {
-    id: 1,
+    id: 111,
     age: 29,
     name: 'Vix Nguyen',
     comment: 'Senior Software Engineer'
   }
 ];
 
-export const characterReducer = handleActions<RootState.PageState, CharactorModel>(
+export const characterReducer = handleActions<RootState.PageState, CharacterModel>(
   {
-    [CharactorActions.Type.NEW_CHARACTOR]: (state, action) => {
+    [CharacterActions.Type.CHARACTER_LIST]: (state, action: any) => {
+      return [...state, ...action.payload];
+    },
+    [CharacterActions.Type.CHARACTER_NEW]: (state, action) => {
       if (action.payload && action.payload.name) {
         return [
           {
@@ -28,7 +32,7 @@ export const characterReducer = handleActions<RootState.PageState, CharactorMode
       }
       return state;
     },
-    [CharactorActions.Type.UPDATE_CHARACTOR]: (state, action) => {
+    [CharacterActions.Type.CHARACTER_UPDATE]: (state, action) => {
       return state.map((item) => {
         if (!item || !action || !action.payload) {
           return item;
@@ -36,8 +40,8 @@ export const characterReducer = handleActions<RootState.PageState, CharactorMode
         return (item.id || 0) === action.payload ? { ...item, age: ++item.age } : item;
       });
     },
-    [CharactorActions.Type.DELETE_CHARACTOR]: (state, action) => {
-      return state.filter((item: CharactorModel) => item.id !== (action.payload as any));
+    [CharacterActions.Type.CHARACTER_DELETE]: (state, action) => {
+      return state.filter((item: CharacterModel) => item.id !== (action.payload as any));
     }
   },
   initialState

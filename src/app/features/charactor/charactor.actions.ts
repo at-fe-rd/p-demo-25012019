@@ -1,16 +1,17 @@
 import { createAction } from 'redux-actions';
-import { CharactorModel } from 'app/models';
+import { CharacterModel } from 'app/models';
 
-export namespace CharactorActions {
+export namespace CharacterActions {
   export enum Type {
-    NEW_CHARACTOR = 'NEW_CHARACTOR',
-    UPDATE_CHARACTOR = 'UPDATE_CHARACTOR',
-    DELETE_CHARACTOR = 'DELETE_CHARACTOR',
+    CHARACTER_LIST = 'CHARACTER_LIST',
+    CHARACTER_NEW = 'CHARACTER_NEW',
+    CHARACTER_UPDATE = 'CHARACTER_UPDATE',
+    CHARACTER_DELETE = 'CHARACTER_DELETE',
   }
-
-  export const newCharactor = createAction<PartialPick<CharactorModel, 'name'>>(Type.NEW_CHARACTOR);
-  export const updateCharactor = createAction<CharactorModel['id']>(Type.UPDATE_CHARACTOR);
-  export const deleteCharactor = createAction<CharactorModel['id']>(Type.DELETE_CHARACTOR);
+  export const indexCharactor = createAction<any>(Type.CHARACTER_LIST);
+  export const newCharactor = createAction<PartialPick<CharacterModel, 'name'>>(Type.CHARACTER_NEW);
+  export const updateCharactor = createAction<CharacterModel['id']>(Type.CHARACTER_UPDATE);
+  export const deleteCharactor = createAction<CharacterModel['id']>(Type.CHARACTER_DELETE);
 }
 
-export type CharactorActions = Omit<typeof CharactorActions, 'Type'>;
+export type CharacterActions = Omit<typeof CharacterActions, 'Type'>;

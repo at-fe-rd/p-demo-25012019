@@ -1,6 +1,6 @@
 /** CharactorMVC model definitions **/
 
-export interface CharactorModel {
+export interface CharacterModel {
   id?: number;
   name: string;
   age: number;
@@ -8,7 +8,7 @@ export interface CharactorModel {
   [key:string]: any;
 }
 
-export namespace CharactorModel {
+export namespace CharacterModel {
   export enum Filter {
 
   }

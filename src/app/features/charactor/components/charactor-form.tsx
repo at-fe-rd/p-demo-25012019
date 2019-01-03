@@ -1,9 +1,9 @@
 import * as React from 'react';
-import { CharactorModel } from 'app/models/CharactorModel';
+import { CharacterModel } from 'app/models/CharacterModel';
 
 export namespace CharactorForm {
   export interface Props {
-    onSave: (obj: CharactorModel) => void;
+    onSave: (obj: CharacterModel) => void;
   }
   export interface State {
     fields: any;
@@ -31,14 +31,12 @@ export class CharactorForm extends React.Component<CharactorForm.Props, Characto
     };
     this.validaters = {
       name: (value: any) => {    
-        const regexp = /^\[a-zA-Z]{1, 10}$/;
-        const checkingResult = regexp.exec(value);
-        return checkingResult !== null;
+        const regexp = /^.{1, 10}$/;
+        return regexp.test(value);
       },
       age: (value: any) => {    
-        const regexp = /^\D{1, 3}$/;
-        const checkingResult = regexp.exec(value);
-        return checkingResult !== null;
+        const regexp = /^\d{1, 3}$/;
+        return regexp.test(value);
       },
       comment: (value: any) => { 
         return true;

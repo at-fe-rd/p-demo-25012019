@@ -1,8 +1,10 @@
 import * as React from 'react';
 import { CharacterItem } from './charactor-item';
+import * as API from 'app/utils/api';
 
 export namespace CharactorList {
   export interface Props {
+    onRefresh: (data: any) => void;
     onUpdate: (id: number) => void;
     onDelete: (id: number) => void;
     data: any;
@@ -11,6 +13,20 @@ export namespace CharactorList {
 
 export class CharactorList extends React.Component<CharactorList.Props> {
   
+  componentDidMount() {
+    this.fetchData();
+  }
+
+  loadMore = () => {
+    this.fetchData();
+  }
+
+  fetchData = async () => {
+    await API.default('/users').then(res => {
+      this.props.onRefresh(res.data);
+    });
+  }
+
   render() {
     const { onDelete, onUpdate, data } = this.props;
     return (
@@ -38,7 +54,7 @@ export class CharactorList extends React.Component<CharactorList.Props> {
           </tbody>
         </table>
         <div className="view-more center-text">
-          <button type="button" className="btn btn-primary btn-style-1 btn-medium">さらに表示</button>
+          <button onClick={this.loadMore} className="btn btn-primary btn-style-1 btn-medium">さらに表示</button>
         </div>
       </section>
     );
