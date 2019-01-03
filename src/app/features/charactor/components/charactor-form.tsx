@@ -15,7 +15,7 @@ export namespace CharactorForm {
 }
 
 export class CharactorForm extends React.Component<CharactorForm.Props, CharactorForm.State> {
-  
+
   validaters: any;
 
   constructor(props: CharactorForm.Props) {
@@ -31,15 +31,15 @@ export class CharactorForm extends React.Component<CharactorForm.Props, Characto
       isFormValid: false
     };
     this.validaters = {
-      name: (value: any) => {    
+      name: (value: any) => {
         const regexp = /^.{1,10}$/;
         return regexp.test(value);
       },
-      age: (value: any) => {    
+      age: (value: any) => {
         const regexp = /^\d{1,3}$/;
         return regexp.test(value);
       },
-      comment: (value: any) => { 
+      comment: (value: any) => {
         return true;
       }
     }
@@ -69,7 +69,7 @@ export class CharactorForm extends React.Component<CharactorForm.Props, Characto
         age: '',
         comment: ''
       },
-      errors: {} 
+      errors: {}
     });
   }
 
@@ -127,7 +127,7 @@ export class CharactorForm extends React.Component<CharactorForm.Props, Characto
             <div className="form-group col-12">
               <label className="form-label">コメント</label>
               <textarea className={`form-input ${ this.state.errors['comment'] ? 'invalid' : '' }`}
-                        rows={5} 
+                        rows={5}
                         name="comment"
                         value={this.state.fields['comment']}
                         onChange={this.handleChange}
@@ -138,11 +138,11 @@ export class CharactorForm extends React.Component<CharactorForm.Props, Characto
           </div>
           <div className="row">
             <div className="btn-group col-12">
-              <button type="submit" className={`btn btn-primary btn-style-1 btn-animated ${this.state.isProcessing ? 'show' : 'hide'}`} disabled={this.state.isProcessing || !this.state.isFormValid}>
+              <button type="submit" className={`btn btn-primary btn-animated ${this.state.isProcessing ? 'show' : 'hide'}`} disabled={this.state.isProcessing || !this.state.isFormValid}>
                 <i className="fa fa-spinner fa-spin animated-icon"></i>
                 <span className="animated-label">登録</span>
               </button>
-              <button type="button" onClick={this.resetForm} className="btn btn-default btn-style-1" disabled={this.state.isProcessing}> 
+              <button type="button" onClick={this.resetForm} className="btn btn-outline btn-success" disabled={this.state.isProcessing}>
                 キャンセル
               </button>
             </div>

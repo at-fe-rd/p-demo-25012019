@@ -15,9 +15,9 @@ button, .btn {
 }
 button:disabled,
 button[disabled]{
-  border: 1px solid #999999 !important;
-  background-color: #cccccc !important;
-  color: #666666 !important;
+  border: 1px solid map-get($color, gray-a)!important;
+  background-color: map-get($color, gray-b)!important;
+  color: map-get($color, gray) !important;
   cursor: not-allowed;
 }
 .btn-primary {
@@ -25,7 +25,7 @@ button[disabled]{
   border-color: map-get($color, primary);
   background-color: map-get($color, primary);
 }
-.btn-default {
+.btn-outline {
   border-color: map-get($color, border);
   color: map-get($color, secondary);
   background: transparent;
@@ -35,21 +35,25 @@ button[disabled]{
     background-color: map-get($color, white);
   }
 }
+.btn-success {
+  &:hover {
+    color: map-get($color, primary);
+    border-color: map-get($color, primary);
+  }
+}
+.btn-danger {
+  &:hover {
+    color: map-get($color, red);
+    border-color: map-get($color, red);
+  }
+}
 .btn-sm {
   padding: 6px 8px;
   font-size: map-get($font-size, sm);
 }
-.btn-style-1 {
-  &:hover {
-    color: map-get($color, primary);
-    border-color: map-get($color, primary);
-    background-color: map-get($color, white);
-  }
-}
-.btn-style-2 {
+.btn-load-more {
   position: relative;
   z-index: 2;
-  padding: 20px 30px;
   &:after {
     @include transition(all 0.3s ease 0s);
     @include border-radius(5px);
