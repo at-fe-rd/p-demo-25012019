@@ -31,7 +31,7 @@ export class CharactorList extends React.Component<CharactorList.Props> {
     const { onDelete, onUpdate, data } = this.props;
     return (
       <section className="list-users">
-        <h2 className="home-title">Characters</h2>
+        <h2 className="home-title">キャラクター</h2>
         <table className="table table-striped table-vm">
           <thead>
             <tr>

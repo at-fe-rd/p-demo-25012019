@@ -68,17 +68,31 @@ button[disabled]{
     }
   }
 }
-.group-button {
+.btn-animated {
+  .animated-icon {
+    display: none;
+  }
+  .animated-label {
+    display: inline-block;
+  }
+  &.show {
+    .animated-icon {
+      display: inline-block;
+    }
+    .animated-label {
+      display: none;
+    }
+  }
+}
+.btn-group {
   text-align: center;
   .btn {
-    margin-left: 20px;
-  }
-  .btn-medium {
-    width: 160px;
-    position: relative;
-    i {
-      position: absolute;
-      left: 15px;
+    margin: 0 4px;
+    &:first-of-type {
+      margin-left: 0;
+    }
+    &:last-of-type {
+      margin-right: 0;
     }
   }
 }

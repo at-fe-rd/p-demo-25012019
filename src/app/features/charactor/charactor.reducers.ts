@@ -2,16 +2,8 @@ import { handleActions } from 'redux-actions';
 import { RootState } from 'app/reducers/state';
 import { CharacterActions } from './charactor.actions';
 import { CharacterModel } from 'app/models';
-// import { API } from 'app/utils/api';
 
-const initialState: RootState.PageState = [
-  {
-    id: 111,
-    age: 29,
-    name: 'Vix Nguyen',
-    comment: 'Senior Software Engineer'
-  }
-];
+const initialState: RootState.PageState = [];
 
 export const characterReducer = handleActions<RootState.PageState, CharacterModel>(
   {

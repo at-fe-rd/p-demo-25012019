@@ -31,8 +31,10 @@ export class CharacterItem extends React.Component<CharacterItem.Props> {
           {character.comment}
         </td>
         <td className="col-1 no-wrap">
-          <button type="button" onClick={this.handleUpdate}  className="btn btn-default btn-sm">+1</button>
-          <button type="button" onClick={this.handleDelete} className="btn btn-default btn-sm">削除</button>
+          <div className="btn-group">
+            <button type="button" onClick={this.handleUpdate}  className="btn btn-default btn-sm">+1</button>
+            <button type="button" onClick={this.handleDelete} className="btn btn-default btn-sm">削除</button>
+          </div>
         </td>
       </tr>
     );
