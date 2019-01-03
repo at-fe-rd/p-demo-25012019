@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { CharacterItem } from './charactor-item';
-import * as API from 'app/utils/api';
+import { API } from 'app/utils/api';
 
 export namespace CharactorList {
   export interface Props {
@@ -22,7 +22,7 @@ export class CharactorList extends React.Component<CharactorList.Props> {
   }
 
   fetchData = async () => {
-    await API.default('/users').then(res => {
+    await API.get('/users').then((res: any) => {
       this.props.onRefresh(res.data);
     });
   }

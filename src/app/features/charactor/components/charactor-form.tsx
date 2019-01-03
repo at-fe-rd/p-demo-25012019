@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { CharacterModel } from 'app/models/CharacterModel';
-import * as API from 'app/utils/api';
+import { API } from 'app/utils/api';
 
 export namespace CharactorForm {
   export interface Props {
@@ -48,14 +48,14 @@ export class CharactorForm extends React.Component<CharactorForm.Props, Characto
   onSubmit = (e: any) => {
     e.preventDefault();
     this.setState({ isProcessing: true });
-    this.props.onSave(this.state.fields);
+    this.register(this.state.fields);
     setTimeout(() => {
       this.resetForm();
     }, 1000);
   }
 
-  register = async () => {
-    await API.default('/users').then(res => {
+  register = async (data: CharacterModel) => {
+    await API.post('/users', data).then(res => {
       this.props.onSave(res.data);
     });
   }
