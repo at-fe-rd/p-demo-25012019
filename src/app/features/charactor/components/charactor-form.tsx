@@ -49,14 +49,12 @@ export class CharactorForm extends React.Component<CharactorForm.Props, Characto
     e.preventDefault();
     this.setState({ isProcessing: true });
     this.register(this.state.fields);
-    setTimeout(() => {
-      this.resetForm();
-    }, 1000);
   }
 
   register = (data: CharacterModel) => {
     API.post('/users', data).then((res: any) => {
       this.props.onSave(res.data);
+      this.resetForm();
     });
   }
 
