@@ -19,12 +19,21 @@ $color: (
   gray-a: #999999,
   gray-b: #cccccc,
   red: #d35344,
-  green: #3c763d,
-  green-a: #b2dba1,
-  green-b: #dff0d8,
-  green-c: #c8e5bc,
-
+  alert-success-bg: #dff0d8,
+  alert-success-text: #3c763d,
+  alert-success-border: darken(adjust-hue(#dff0d8, -10), 5%),
+  alert-info-bg: #d9edf7,
+  alert-info-text: #31708f,
+  alert-info-border: darken(adjust-hue(#d9edf7, -10), 7%),
+  alert-warning-bg: #fcf8e3,
+  alert-warning-text: #8a6d3b,
+  alert-warning-border: darken(adjust-hue(#fcf8e3, -10), 5%),
+  alert-danger-bg:#f2dede,
+  alert-danger-text: #a94442,
+  alert-danger-border: darken(adjust-hue(#f2dede, -10), 5%),
 );
+
+
 $font-size: (
   xs: 10px,
   sm: 12px,

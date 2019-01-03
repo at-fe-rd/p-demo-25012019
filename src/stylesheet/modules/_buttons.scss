@@ -12,13 +12,12 @@ button, .btn {
   cursor: pointer;
   text-transform: uppercase;
   zoom: 1;
-}
-button:disabled,
-button[disabled]{
-  border: 1px solid map-get($color, gray-a)!important;
-  background-color: map-get($color, gray-b)!important;
-  color: map-get($color, gray) !important;
-  cursor: not-allowed;
+  &:disabled, [disabled] {
+    border: 1px solid map-get($color, gray-a)!important;
+    background-color: map-get($color, gray-b)!important;
+    color: map-get($color, gray) !important;
+    cursor: not-allowed;
+  }
 }
 .btn-primary {
   color: map-get($color, white);
@@ -50,27 +49,6 @@ button[disabled]{
 .btn-sm {
   padding: 6px 8px;
   font-size: map-get($font-size, sm);
-}
-.btn-load-more {
-  position: relative;
-  z-index: 2;
-  &:after {
-    @include transition(all 0.3s ease 0s);
-    @include border-radius(5px);
-    content: "";
-    height: 100%;
-    left: 0;
-    top: 0;
-    width: 0;
-    position: absolute;
-    z-index: -1;
-    background: map-get($color, hover-color);
-  }
-  &:hover {
-    &:after {
-      width: 100%;
-    }
-  }
 }
 .btn-animated {
   .animated-icon {

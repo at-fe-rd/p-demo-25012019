@@ -17,8 +17,7 @@
     transform: translateY(-50%);
     width: 22px;
     height: 22px;
-    line-height: 22px;
-    background: map-get($color, green);
+    line-height: 24px;
     display: inline-block;
     text-align: center;
   }
@@ -37,11 +36,34 @@
   }
 }
 .alert-success {
-  background-image: -webkit-linear-gradient(top, map-get($color, green-b) 0, map-get($color, green-c) 100%);
-  background-image: -o-linear-gradient(top, map-get($color, green-b) 0, map-get($color, green-c) 100%);
-  background-image: -webkit-gradient(linear, left top, left bottom, from(map-get($color, green-b)), to(map-get($color, green-c)));
-  background-image: linear-gradient(to bottom, map-get($color, green-b) 0, map-get($color, green-c) 100%);
-  background-repeat: repeat-x;
-  border-color: map-get($color, green-a);
-  color: map-get($color, green);
+  @include alert-variant(map-get($color, alert-success-bg), map-get($color, alert-success-border), map-get($color, alert-success-text));
+  .alert-icon {
+    background: map-get($color, alert-success-text);
+  }
+}
+
+.alert-info {
+  @include alert-variant(map-get($color, alert-info-bg), map-get($color, alert-info-border), map-get($color, alert-info-text));
+  .alert-icon {
+    background: map-get($color, alert-info-text);
+  }
+}
+
+.alert-warning {
+  @include alert-variant(map-get($color, alert-warning-bg), map-get($color, alert-warning-border), map-get($color, alert-warning-text));
+  .alert-icon {
+    background: map-get($color, alert-warning-text);
+  }
+}
+
+.alert-danger {
+  @include alert-variant(map-get($color, alert-danger-bg), map-get($color, alert-danger-border), map-get($color, alert-danger-text));
+  .alert-icon {
+    background: map-get($color, alert-danger-text);
+  }
+}
+.show-alert {
+  display: block;
+  top : 12px;
+  right: 15px;
 }

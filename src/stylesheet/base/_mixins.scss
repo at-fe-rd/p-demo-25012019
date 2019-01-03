@@ -128,3 +128,16 @@
       -ms-flex-wrap: $wrap;
           flex-wrap: $wrap;
 }
+@mixin alert-variant($background, $border, $text-color) {
+  color: $text-color;
+  background-color: $background;
+  border-color: $border;
+
+  hr {
+    border-top-color: darken($border, 5%);
+  }
+
+  .alert-link {
+    color: darken($text-color, 10%);
+  }
+}

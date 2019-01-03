@@ -11,6 +11,7 @@ export namespace CharactorForm {
     errors?: any;
     isProcessing: boolean;
     isFormValid: boolean;
+    isShow: any;
   }
 }
 
@@ -28,7 +29,8 @@ export class CharactorForm extends React.Component<CharactorForm.Props, Characto
       },
       errors: {},
       isProcessing: false,
-      isFormValid: false
+      isFormValid: false,
+      isShow: 'hide-alert'
     };
     this.validaters = {
       name: (value: any) => {
@@ -51,6 +53,11 @@ export class CharactorForm extends React.Component<CharactorForm.Props, Characto
     this.register(this.state.fields);
     setTimeout(() => {
       this.resetForm();
+      if (!this.state.isProcessing) {
+        this.setState({
+          isShow: 'show-alert'
+        })
+      }
     }, 1000);
   }
 
@@ -103,6 +110,17 @@ export class CharactorForm extends React.Component<CharactorForm.Props, Characto
     const {  } = this.props;
     return (
       <section className="contact-form">
+        <div className={`${this.state.isShow} alert alert-success`}>
+          <div className="alert-icon">
+            <i className="fa fa-check" aria-hidden="true"></i>
+          </div>
+          <div className="alert-content">
+            <p>Your information has been successfully submitted.</p>
+          </div>
+          <div className="alert-close">
+            <i className="fa fa-times"></i>
+          </div>
+        </div>
         <h2 className="home-title">登録</h2>
         <form onSubmit={this.onSubmit}>
           <div className="row">

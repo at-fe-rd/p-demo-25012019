@@ -21,6 +21,27 @@
 .view-more {
   margin-top: 30px;
 }
+.btn-load-more {
+  position: relative;
+  z-index: 2;
+  &:after {
+    @include transition(all 0.3s ease 0s);
+    @include border-radius(5px);
+    content: "";
+    height: 100%;
+    left: 0;
+    top: 0;
+    width: 0;
+    position: absolute;
+    z-index: -1;
+    background: map-get($color, hover-color);
+  }
+  &:hover {
+    &:after {
+      width: 100%;
+    }
+  }
+}
 @include respond-below(small) {
   .form-group {
     width: 100%;
