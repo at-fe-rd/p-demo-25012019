@@ -11,11 +11,12 @@ export namespace CharactorForm {
     errors?: any;
     isProcessing: boolean;
     isFormValid: boolean;
+    isShow: any;
   }
 }
 
 export class CharactorForm extends React.Component<CharactorForm.Props, CharactorForm.State> {
-  
+
   validaters: any;
 
   constructor(props: CharactorForm.Props) {
@@ -28,18 +29,19 @@ export class CharactorForm extends React.Component<CharactorForm.Props, Characto
       },
       errors: {},
       isProcessing: false,
-      isFormValid: false
+      isFormValid: false,
+      isShow: ''
     };
     this.validaters = {
-      name: (value: any) => {    
+      name: (value: any) => {
         const regexp = /^.{1,10}$/;
         return regexp.test(value);
       },
-      age: (value: any) => {    
+      age: (value: any) => {
         const regexp = /^\d{1,3}$/;
         return regexp.test(value);
       },
-      comment: (value: any) => { 
+      comment: (value: any) => {
         return true;
       }
     }
@@ -49,6 +51,19 @@ export class CharactorForm extends React.Component<CharactorForm.Props, Characto
     e.preventDefault();
     this.setState({ isProcessing: true });
     this.register(this.state.fields);
+    setTimeout(() => {
+      this.resetForm();
+      if (!this.state.isProcessing) {
+        this.setState({
+          isShow: 'fade-in'
+        })
+      }
+    }, 1000);
+    setTimeout(() => {
+      this.setState({
+        isShow: 'fade-out'
+      })
+    }, 3000);
   }
 
   register = (data: CharacterModel) => {
@@ -67,7 +82,7 @@ export class CharactorForm extends React.Component<CharactorForm.Props, Characto
         age: '',
         comment: ''
       },
-      errors: {} 
+      errors: {}
     });
   }
 
@@ -101,6 +116,14 @@ export class CharactorForm extends React.Component<CharactorForm.Props, Characto
     const {  } = this.props;
     return (
       <section className="contact-form">
+        <div className={`${this.state.isShow} alert alert-success`}>
+          <div className="alert-icon">
+            <i className="fa fa-check" aria-hidden="true"></i>
+          </div>
+          <div className="alert-content">
+            <p>Your information has been successfully submitted.</p>
+          </div>
+        </div>
         <h2 className="home-title">登録</h2>
         <form onSubmit={this.onSubmit}>
           <div className="row">
@@ -125,7 +148,7 @@ export class CharactorForm extends React.Component<CharactorForm.Props, Characto
             <div className="form-group col-12">
               <label className="form-label">コメント</label>
               <textarea className={`form-input ${ this.state.errors['comment'] ? 'invalid' : '' }`}
-                        rows={5} 
+                        rows={5}
                         name="comment"
                         value={this.state.fields['comment']}
                         onChange={this.handleChange}
@@ -136,11 +159,11 @@ export class CharactorForm extends React.Component<CharactorForm.Props, Characto
           </div>
           <div className="row">
             <div className="btn-group col-12">
-              <button type="submit" className={`btn btn-primary btn-style-1 btn-animated ${this.state.isProcessing ? 'show' : 'hide'}`} disabled={this.state.isProcessing || !this.state.isFormValid}>
+              <button type="submit" className={`btn btn-primary btn-animated ${this.state.isProcessing ? 'show' : 'hide'}`} disabled={this.state.isProcessing || !this.state.isFormValid}>
                 <i className="fa fa-spinner fa-spin animated-icon"></i>
                 <span className="animated-label">登録</span>
               </button>
-              <button type="button" onClick={this.resetForm} className="btn btn-default btn-style-1" disabled={this.state.isProcessing}> 
+              <button type="button" onClick={this.resetForm} className="btn btn-outline btn-success" disabled={this.state.isProcessing}>
                 キャンセル
               </button>
             </div>

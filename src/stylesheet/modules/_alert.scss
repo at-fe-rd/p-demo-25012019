@@ -1,0 +1,87 @@
+.alert {
+  @include border-radius(4px);
+  text-align:left;
+  padding: 15px 0;
+  max-width: 500px;
+  right: 0;
+  position: absolute;
+  display: none;
+  transition: transform 5s ease-in-out, opacity 5s ease-in-out;
+  box-sizing: border-box;
+  border: 1px solid transparent;
+  .alert-icon {
+    @include border-radius(50%);
+    color: map-get($color, white);
+    position: absolute;
+    top: 50%;
+    left: 20px;
+    transform: translateY(-50%);
+    width: 22px;
+    height: 22px;
+    line-height: 24px;
+    display: inline-block;
+    text-align: center;
+  }
+  .alert-content {
+    padding: 0 60px;
+    p {
+      margin-bottom: 0;
+    }
+  }
+}
+.alert-success {
+  @include alert-variant(map-get($color, alert-success-bg), map-get($color, alert-success-border), map-get($color, alert-success-text));
+  .alert-icon {
+    background: map-get($color, alert-success-text);
+  }
+}
+.alert-info {
+  @include alert-variant(map-get($color, alert-info-bg), map-get($color, alert-info-border), map-get($color, alert-info-text));
+  .alert-icon {
+    background: map-get($color, alert-info-text);
+  }
+}
+.alert-warning {
+  @include alert-variant(map-get($color, alert-warning-bg), map-get($color, alert-warning-border), map-get($color, alert-warning-text));
+  .alert-icon {
+    background: map-get($color, alert-warning-text);
+  }
+}
+.alert-danger {
+  @include alert-variant(map-get($color, alert-danger-bg), map-get($color, alert-danger-border), map-get($color, alert-danger-text));
+  .alert-icon {
+    background: map-get($color, alert-danger-text);
+  }
+}
+.fade-in, .fade-out{
+  display: block;
+  opacity: 1;
+  top : 12px;
+  right: 15px;
+}
+.fade-in {
+  @include animation(topFadeIn);
+  animation-duration: 1s;
+}
+.fade-out {
+  @include animation(fadeOut 3.0s forwards);
+  @include animation-delay(2s);
+}
+@include keyframes(topFadeIn) {
+  0% {
+    top: -10px;
+    opacity: 0;
+  }
+  100% {
+    top: 12px;
+    opacity: 1;
+  }
+}
+@include keyframes(fadeOut) {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}

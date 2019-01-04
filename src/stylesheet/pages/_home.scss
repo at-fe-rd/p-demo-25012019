@@ -18,58 +18,30 @@
   white-space: pre;
   line-height: 1.4;
 }
-.alert {
-  @include border-radius(4px);
-  text-align:left;
-  padding: 15px 0;
-  max-width: 500px;
-  right: 0;
-  position: absolute;
-  display: none;
-  box-sizing: border-box;
-  border: 1px solid transparent;
-  .alert-icon{
-    @include border-radius(50%);
-    color: map-get($color, white);
-    position: absolute;
-    top: 50%;
-    left: 20px;
-    transform: translateY(-50%);
-    width: 22px;
-    height: 22px;
-    line-height: 22px;
-    background: map-get($color, green);
-    display: inline-block;
-    text-align: center;
-  }
-  .alert-content {
-    padding: 0 60px;
-    p {
-      margin-bottom: 0;
-    }
-  }
-  .alert-close {
-    position: absolute;
-    right: 20px;
-    top: 50%;
-    cursor: pointer;
-    transform: translateY(-50%);
-  }
-}
-.alert-success {
-  background-image: -webkit-linear-gradient(top, map-get($color, green-b) 0, map-get($color, green-c) 100%);
-  background-image: -o-linear-gradient(top, map-get($color, green-b) 0, map-get($color, green-c) 100%);
-  background-image: -webkit-gradient(linear, left top, left bottom, from(map-get($color, green-b)), to(map-get($color, green-c)));
-  background-image: linear-gradient(to bottom, map-get($color, green-b) 0, map-get($color, green-c) 100%);
-  background-repeat: repeat-x;
-  border-color: map-get($color, green-a);
-  color: map-get($color, green);
-}
-
 .view-more {
   margin-top: 30px;
 }
-
+.btn-load-more {
+  position: relative;
+  z-index: 2;
+  &:after {
+    @include transition(all 0.3s ease 0s);
+    @include border-radius(5px);
+    content: "";
+    height: 100%;
+    left: 0;
+    top: 0;
+    width: 0;
+    position: absolute;
+    z-index: -1;
+    background: map-get($color, hover-color);
+  }
+  &:hover {
+    &:after {
+      width: 100%;
+    }
+  }
+}
 @include respond-below(small) {
   .form-group {
     width: 100%;
