@@ -5,13 +5,13 @@ import { API } from 'app/utils/api';
 export namespace CharactorForm {
   export interface Props {
     onSave: (obj: CharacterModel) => void;
+    alerter: any;
   }
   export interface State {
     fields: any;
     errors?: any;
     isProcessing: boolean;
     isFormValid: boolean;
-    isShow: any;
   }
 }
 
@@ -29,8 +29,7 @@ export class CharactorForm extends React.Component<CharactorForm.Props, Characto
       },
       errors: {},
       isProcessing: false,
-      isFormValid: false,
-      isShow: ''
+      isFormValid: false
     };
     this.validaters = {
       name: (value: any) => {
@@ -51,19 +50,20 @@ export class CharactorForm extends React.Component<CharactorForm.Props, Characto
     e.preventDefault();
     this.setState({ isProcessing: true });
     this.register(this.state.fields);
-    setTimeout(() => {
-      this.resetForm();
-      if (!this.state.isProcessing) {
-        this.setState({
-          isShow: 'fade-in'
-        })
-      }
-    }, 1000);
-    setTimeout(() => {
-      this.setState({
-        isShow: 'fade-out'
-      })
-    }, 3000);
+  }
+
+  showAlert = () => {
+    this.props.alerter.showAlert({
+      type: 'success',
+      msg: 'OK'
+    });
+  }
+
+  hideAlert = () => {
+    this.props.alerter.hideAlert({
+      type: 'success',
+      msg: 'OK'
+    });
   }
 
   register = (data: CharacterModel) => {
@@ -116,14 +116,6 @@ export class CharactorForm extends React.Component<CharactorForm.Props, Characto
     const {  } = this.props;
     return (
       <section className="contact-form">
-        <div className={`${this.state.isShow} alert alert-success`}>
-          <div className="alert-icon">
-            <i className="fa fa-check" aria-hidden="true"></i>
-          </div>
-          <div className="alert-content">
-            <p>Your information has been successfully submitted.</p>
-          </div>
-        </div>
         <h2 className="home-title">登録</h2>
         <form onSubmit={this.onSubmit}>
           <div className="row">
@@ -165,6 +157,12 @@ export class CharactorForm extends React.Component<CharactorForm.Props, Characto
               </button>
               <button type="button" onClick={this.resetForm} className="btn btn-outline btn-success" disabled={this.state.isProcessing}>
                 キャンセル
+              </button>
+              <button type="button" onClick={this.showAlert} className="btn btn-outline btn-success" disabled={this.state.isProcessing}>
+                Show
+              </button>
+              <button type="button" onClick={this.hideAlert} className="btn btn-outline btn-success" disabled={this.state.isProcessing}>
+                Hide
               </button>
             </div>
           </div>

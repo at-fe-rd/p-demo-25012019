@@ -3,14 +3,16 @@ import * as React from 'react';
 
 export namespace Alert {
   export interface Props {
-    notification: Alert;
+    alerter: any;
+    notification: any;
   }
   export interface State {
-    isShow: boolean;
+    isOpen: boolean;
   }
 }
 
 export interface Alert {
+  isOpen: boolean;
   type: string;
   msg: string;
   obj?: any;
@@ -19,22 +21,50 @@ export interface Alert {
 
 export class Alert extends React.Component<Alert.Props, Alert.State> {
 
+  private timer: any;
+
   constructor(props: Alert.Props, context?: any) {
     super(props, context);
     this.state = {
-      isShow: false
+      isOpen: false
     };
   }
 
+  hideMe = () => {
+    this.setState({
+      isOpen: false
+    });
+    clearTimeout(this.timer);
+  }
+
+  showMe = () => {
+    clearTimeout(this.timer);
+    this.setState(
+      {
+        isOpen: true
+      },
+      this.autoHide
+    );
+  }
+
+  autoHide() {
+    this.timer = setTimeout(() => {
+      this.hideMe();
+    }, 3000);
+  }
+
   componentWillReceiveProps(nextProps: any) {
-    // console.log(12);
+    if (nextProps.notification.isOpen) {
+      this.showMe();
+    } else {
+      this.hideMe();
+    }
   }
 
   render() {
-    const { type, msg, obj, icon } = this.props.notification;
-    console.log(type, msg, obj, icon);
+    const { type, msg } = this.props.notification;
     return (
-      <div className={`alert alert-${type} ${this.state.isShow ? 'show' : ''}`}>
+      <div className={`alert alert-${type} ${this.state.isOpen ? 'fade-in' : 'fade-out'}`}>
         <div className="alert-icon">
           <i className="fa fa-check" aria-hidden="true"></i>
         </div>

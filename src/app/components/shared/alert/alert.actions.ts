@@ -3,9 +3,7 @@ import { createAction } from 'redux-actions';
 export namespace AlertActions {
   export enum Type {
     ALERT_SHOW = 'ALERT_SHOW',
-    ALERT_HIDE = 'ALERT_HIDE',
-    CHARACTER_UPDATE = 'CHARACTER_UPDATE',
-    CHARACTER_DELETE = 'CHARACTER_DELETE',
+    ALERT_HIDE = 'ALERT_HIDE'
   }
   export const showAlert = createAction<any>(Type.ALERT_SHOW);
   export const hideAlert = createAction<any>(Type.ALERT_HIDE);
