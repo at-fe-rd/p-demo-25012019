@@ -16,7 +16,7 @@ export namespace CharactorForm {
 
 export class CharactorForm extends React.Component<CharactorForm.Props, CharactorForm.State> {
   
-  validaters: any;
+  validators: any;
 
   constructor(props: CharactorForm.Props) {
     super(props);
@@ -30,7 +30,7 @@ export class CharactorForm extends React.Component<CharactorForm.Props, Characto
       isProcessing: false,
       isFormValid: false
     };
-    this.validaters = {
+    this.validators = {
       name: (value: any) => {    
         const regexp = /^.{1,10}$/;
         return regexp.test(value);
@@ -86,7 +86,7 @@ export class CharactorForm extends React.Component<CharactorForm.Props, Characto
     let errors: any = {};
     let isFormValid: boolean = true;
     for (let key in this.state.fields) {
-      if (!this.validaters[key](this.state.fields[key])) {
+      if (!this.validators[key](this.state.fields[key])) {
         errors[key] = true;
         isFormValid = false;
       }

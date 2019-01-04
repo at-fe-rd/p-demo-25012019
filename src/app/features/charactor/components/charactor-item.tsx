@@ -12,7 +12,6 @@ export namespace CharacterItem {
 
 export class CharacterItem extends React.Component<CharacterItem.Props> {
 
-  
   handleDelete = () => {
     this.onDelete();
   }

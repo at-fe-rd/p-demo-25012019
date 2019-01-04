@@ -27,7 +27,7 @@ export class Alert extends React.Component<Alert.Props, Alert.State> {
   }
 
   componentWillReceiveProps(nextProps: any) {
-    console.log(12);
+    // console.log(12);
   }
 
   render() {

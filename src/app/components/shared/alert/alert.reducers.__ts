@@ -1,0 +1,14 @@
+import { handleActions } from 'redux-actions';
+import { RootState } from 'app/reducers/state';
+import { CharacterActions } from './alert.actions';
+
+const initialState: RootState.PageState = [];
+
+export const characterReducer = handleActions<RootState.PageState, any>(
+  {
+    [CharacterActions.Type.CHARACTER_LIST]: (state, action: any) => {
+      return [...state, ...action.payload];
+    }
+  },
+  initialState
+);

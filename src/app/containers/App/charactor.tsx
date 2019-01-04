@@ -24,6 +24,7 @@ export namespace App {
     actions: bindActionCreators(omit(CharacterActions, 'Type'), dispatch)
   })
 )
+
 export class App extends React.Component<App.Props> {
 
   constructor(props: App.Props, context?: any) {
@@ -39,7 +40,10 @@ export class App extends React.Component<App.Props> {
         <Header />
         <div className="container">
           <CharactorForm onSave={actions.newCharactor} />
-          <CharactorList data={pageData} onRefresh={actions.indexCharactor} onDelete={actions.deleteCharactor} onUpdate={actions.updateCharactor} />
+          <CharactorList data={pageData}
+                         onRefresh={actions.indexCharactor}
+                         onDelete={actions.deleteCharactor}
+                         onUpdate={actions.updateCharactor} />
         </div>
         <Footer />
       </div>

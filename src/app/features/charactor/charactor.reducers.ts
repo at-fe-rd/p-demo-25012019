@@ -11,11 +11,7 @@ export const characterReducer = handleActions<RootState.PageState, CharacterMode
       return [...state, ...action.payload];
     },
     [CharacterActions.Type.CHARACTER_NEW]: (state, action) => {
-      if (action.payload && action.payload.name) {
-        return [action.payload, ...state];
-      } else {
-        return state;
-      }
+      return action.payload ? [action.payload, ...state] : state;
     },
     [CharacterActions.Type.CHARACTER_UPDATE]: (state, action: any) => {
       return state.map((item) => item.id === action.payload.id ? action.payload : item );
