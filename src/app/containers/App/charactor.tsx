@@ -12,8 +12,8 @@ import { CharactorList } from 'app/features/charactor/components/charactor-list'
 
 export namespace App {
   export interface Props extends RouteComponentProps<void> {
-    pageData: RootState;
-    notification: RootState;
+    pageData: RootState.PageState;
+    notification: RootState.NotificationState;
     actions: CharacterActions;
     alertActions: AlertActions;
   }
@@ -46,7 +46,8 @@ export class App extends React.Component<App.Props> {
           <CharactorList data={pageData}
                          onRefresh={actions.indexCharactor}
                          onDelete={actions.deleteCharactor}
-                         onUpdate={actions.updateCharactor} />
+                         onUpdate={actions.updateCharactor}
+                         alert={alertActions} />
         </div>
         <Footer />
       </div>

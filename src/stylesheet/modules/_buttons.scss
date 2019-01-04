@@ -51,18 +51,24 @@ button, .btn {
   font-size: map-get($font-size, sm);
 }
 .btn-animated {
+  position: relative;
   .animated-icon {
-    display: none;
+    font-size: 16px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
   }
   .animated-label {
-    display: inline-block;
+    opacity: 1;
   }
   &.show {
     .animated-icon {
-      display: inline-block;
+      opacity: 1;
     }
     .animated-label {
-      display: none;
+      opacity: 0;
     }
   }
 }

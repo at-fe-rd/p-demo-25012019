@@ -6,11 +6,14 @@ const initialState: RootState.NotificationState = {};
 
 export const alertReducer = handleActions<RootState.NotificationState, any>(
   {
-    [AlertActions.Type.ALERT_SHOW]: (state, action: any) => {
+    [AlertActions.Type.SHOW]: (state, action: any) => {
       return { ...state, ...action.payload, ...{ isOpen: true } };
     },
-    [AlertActions.Type.ALERT_HIDE]: (state, action: any) => {
+    [AlertActions.Type.HIDE]: (state, action: any) => {
       return { ...state, ...action.payload, ...{ isOpen: false } };
+    },
+    [AlertActions.Type.CLEAR]: (state, action: any) => {
+      return {};
     }
   },
   initialState

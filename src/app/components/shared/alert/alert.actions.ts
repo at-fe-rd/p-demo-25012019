@@ -2,11 +2,13 @@ import { createAction } from 'redux-actions';
 
 export namespace AlertActions {
   export enum Type {
-    ALERT_SHOW = 'ALERT_SHOW',
-    ALERT_HIDE = 'ALERT_HIDE'
+    SHOW = 'SHOW',
+    HIDE = 'HIDE',
+    CLEAR = 'CLEAR'
   }
-  export const showAlert = createAction<any>(Type.ALERT_SHOW);
-  export const hideAlert = createAction<any>(Type.ALERT_HIDE);
+  export const show = createAction<any>(Type.SHOW);
+  export const hide = createAction<any>(Type.HIDE);
+  export const clear = createAction<any>(Type.CLEAR);
 }
 
 export type AlertActions = Omit<typeof AlertActions, 'Type'>;

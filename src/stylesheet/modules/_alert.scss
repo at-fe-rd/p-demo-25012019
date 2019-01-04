@@ -5,6 +5,7 @@
   max-width: 300px;
   left: 50%;
   position: fixed;
+  z-index: 9999;
   display: none;
   transition: transform 5s ease-in-out;
   box-sizing: border-box;

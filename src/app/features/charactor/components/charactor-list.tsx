@@ -8,28 +8,52 @@ export namespace CharactorList {
     onRefresh: (data: any) => void;
     onUpdate: (character: CharacterModel) => void;
     onDelete: (id: number) => void;
+    alert: any;
     data: any;
+  }
+
+  export interface State {
+    isLoading?: boolean;
+    canLoadmore: boolean;
   }
 }
 
-export class CharactorList extends React.Component<CharactorList.Props> {
+export class CharactorList extends React.Component<CharactorList.Props, CharactorList.State> {
+
+  constructor(props: CharactorList.Props, state: CharactorList.State) {
+    super(props, state);
+    this.state = {
+      canLoadmore: true
+    };
+  }
 
   componentDidMount() {
     this.fetchData();
   }
 
   loadMore = () => {
+    this.setState({
+      isLoading: true
+    });
     this.fetchData();
   }
 
   fetchData = () => {
-    API.get('/users').then((res: any) => {
+    API.get(`/users?offset=${this.props.data.length}`).then((res: any) => {
       this.props.onRefresh(res.data);
+      if (res.data && res.data.length < 10) {
+        this.setState({
+          canLoadmore: false
+        });
+      };
+      this.setState({
+        isLoading: false
+      });
     });
   }
 
   render() {
-    const { onDelete, onUpdate, data } = this.props;
+    const { onDelete, onUpdate, data, alert } = this.props;
     return (
       <section className="list-users">
         <h2 className="home-title">キャラクター</h2>
@@ -50,12 +74,18 @@ export class CharactorList extends React.Component<CharactorList.Props> {
                 key={item.id}
                 character={item}
                 updateCharactor={onUpdate}
-                deleteCharactor={onDelete} />
+                deleteCharactor={onDelete}
+                alert={alert} />
             ))}
           </tbody>
         </table>
         <div className="view-more center-text">
-          <button onClick={this.loadMore} className="btn btn-primary">さらに表示</button>
+          <button disabled={!this.state.canLoadmore} onClick={this.loadMore} className={`btn btn-outline btn-animated ${this.state.isLoading ? 'show' : 'hide'}`}>
+            <span className="animated-icon">
+              <i className="fa fa-spinner fa-spin"></i>
+            </span>
+            <span className="animated-label">さらに表示</span>
+          </button>
         </div>
       </section>
     );

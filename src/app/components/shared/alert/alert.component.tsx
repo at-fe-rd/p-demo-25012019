@@ -7,7 +7,7 @@ export namespace Alert {
     notification: any;
   }
   export interface State {
-    isOpen: boolean;
+    cls: string;
   }
 }
 
@@ -26,22 +26,25 @@ export class Alert extends React.Component<Alert.Props, Alert.State> {
   constructor(props: Alert.Props, context?: any) {
     super(props, context);
     this.state = {
-      isOpen: false
+      cls: ''
     };
   }
 
   hideMe = () => {
     this.setState({
-      isOpen: false
+      cls: 'fade-out'
     });
     clearTimeout(this.timer);
+    setTimeout(() => {
+      this.props.alerter.clear();
+    }, 1000);
   }
 
   showMe = () => {
     clearTimeout(this.timer);
     this.setState(
       {
-        isOpen: true
+        cls: 'fade-in'
       },
       this.autoHide
     );
@@ -56,15 +59,13 @@ export class Alert extends React.Component<Alert.Props, Alert.State> {
   componentWillReceiveProps(nextProps: any) {
     if (nextProps.notification.isOpen) {
       this.showMe();
-    } else {
-      this.hideMe();
     }
   }
 
   render() {
     const { type, msg } = this.props.notification;
     return (
-      <div className={`alert alert-${type} ${this.state.isOpen ? 'fade-in' : 'fade-out'}`}>
+      <div className={`alert alert-${type} ${this.state.cls}`}>
         <div className="alert-icon">
           <i className="fa fa-check" aria-hidden="true"></i>
         </div>

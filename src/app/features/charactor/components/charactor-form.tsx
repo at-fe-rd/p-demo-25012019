@@ -52,24 +52,23 @@ export class CharactorForm extends React.Component<CharactorForm.Props, Characto
     this.register(this.state.fields);
   }
 
-  showAlert = () => {
-    this.props.alerter.showAlert({
-      type: 'success',
-      msg: 'OK'
-    });
-  }
-
-  hideAlert = () => {
-    this.props.alerter.hideAlert({
-      type: 'success',
-      msg: 'OK'
-    });
-  }
-
   register = (data: CharacterModel) => {
     API.post('/users', data).then((res: any) => {
       this.props.onSave(res.data);
+      this.props.alerter.show({
+        type: 'success',
+        msg: 'Registered Successfully'
+      });
       this.resetForm();
+    }).catch((err: any) => {
+      this.props.alerter.show({
+        type: 'danger',
+        msg: 'Registration failed',
+        timeout: 10000
+      });
+      this.setState({
+        isProcessing: false
+      });
     });
   }
 
@@ -152,17 +151,13 @@ export class CharactorForm extends React.Component<CharactorForm.Props, Characto
           <div className="row">
             <div className="btn-group col-12">
               <button type="submit" className={`btn btn-primary btn-animated ${this.state.isProcessing ? 'show' : 'hide'}`} disabled={this.state.isProcessing || !this.state.isFormValid}>
-                <i className="fa fa-spinner fa-spin animated-icon"></i>
+                <span className="animated-icon">
+                  <i className="fa fa-spinner fa-spin"></i>
+                </span>
                 <span className="animated-label">登録</span>
               </button>
               <button type="button" onClick={this.resetForm} className="btn btn-outline btn-success" disabled={this.state.isProcessing}>
                 キャンセル
-              </button>
-              <button type="button" onClick={this.showAlert} className="btn btn-outline btn-success" disabled={this.state.isProcessing}>
-                Show
-              </button>
-              <button type="button" onClick={this.hideAlert} className="btn btn-outline btn-success" disabled={this.state.isProcessing}>
-                Hide
               </button>
             </div>
           </div>
