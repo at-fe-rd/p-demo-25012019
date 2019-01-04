@@ -22,8 +22,8 @@ export class CharactorList extends React.Component<CharactorList.Props> {
     this.fetchData();
   }
 
-  fetchData = async () => {
-    await API.get('/users').then((res: any) => {
+  fetchData = () => {
+    API.get('/users').then((res: any) => {
       this.props.onRefresh(res.data);
     });
   }

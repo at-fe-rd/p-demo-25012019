@@ -63,12 +63,13 @@ export class CharactorForm extends React.Component<CharactorForm.Props, Characto
       this.setState({
         isShow: 'fade-out'
       })
-    }, 5000);
+    }, 3000);
   }
 
-  register = async (data: CharacterModel) => {
-    await API.post('/users', data).then(res => {
+  register = (data: CharacterModel) => {
+    API.post('/users', data).then((res: any) => {
       this.props.onSave(res.data);
+      this.resetForm();
     });
   }
 

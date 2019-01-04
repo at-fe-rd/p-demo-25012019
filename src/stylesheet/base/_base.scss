@@ -17,8 +17,11 @@ h2 {
   font-size: map-get($font-size, lg);
 }
 p {
-  color: map-get($color, secondary);
-  font-size: map-get($font-size, normal);
-  line-height: 24px;
-  margin: 0 0 15px;
+  margin: 0;
+}
+.show {
+  display: inline-block !important;
+}
+.hidden {
+  display: none !important;
 }
