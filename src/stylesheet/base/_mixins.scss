@@ -128,3 +128,30 @@
       -ms-flex-wrap: $wrap;
           flex-wrap: $wrap;
 }
+@mixin alert-variant($background, $border, $text-color) {
+  color: $text-color;
+  background-color: $background;
+  border-color: $border;
+}
+@mixin animation($name) {
+  -webkit-animation: $name;
+  animation: $name;
+}
+@mixin animation-delay($time) {
+  -webkit-animation-delay: $time;
+  animation-delay: $time;
+}
+@mixin keyframes($name) {
+  @-webkit-keyframes #{$name} {
+    @content;
+  }
+  @-moz-keyframes #{$name} {
+    @content;
+  }
+  @-ms-keyframes #{$name} {
+    @content;
+  }
+  @keyframes #{$name} {
+    @content;
+  }
+}

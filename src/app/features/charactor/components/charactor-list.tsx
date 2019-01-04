@@ -13,7 +13,7 @@ export namespace CharactorList {
 }
 
 export class CharactorList extends React.Component<CharactorList.Props> {
-  
+
   componentDidMount() {
     this.fetchData();
   }
@@ -46,8 +46,8 @@ export class CharactorList extends React.Component<CharactorList.Props> {
           </thead>
           <tbody>
             {data.map((item: any, i: number) => (
-              <CharacterItem 
-                key={item.id} 
+              <CharacterItem
+                key={item.id}
                 character={item}
                 updateCharactor={onUpdate}
                 deleteCharactor={onDelete} />
@@ -55,7 +55,7 @@ export class CharactorList extends React.Component<CharactorList.Props> {
           </tbody>
         </table>
         <div className="view-more center-text">
-          <button onClick={this.loadMore} className="btn btn-primary btn-style-1 btn-medium">さらに表示</button>
+          <button onClick={this.loadMore} className="btn btn-primary">さらに表示</button>
         </div>
       </section>
     );
