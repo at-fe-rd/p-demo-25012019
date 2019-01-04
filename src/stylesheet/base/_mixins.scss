@@ -132,12 +132,26 @@
   color: $text-color;
   background-color: $background;
   border-color: $border;
-
-  hr {
-    border-top-color: darken($border, 5%);
+}
+@mixin animation($name) {
+  -webkit-animation: $name;
+  animation: $name;
+}
+@mixin animation-delay($time) {
+  -webkit-animation-delay: $time;
+  animation-delay: $time;
+}
+@mixin keyframes($name) {
+  @-webkit-keyframes #{$name} {
+    @content;
   }
-
-  .alert-link {
-    color: darken($text-color, 10%);
+  @-moz-keyframes #{$name} {
+    @content;
+  }
+  @-ms-keyframes #{$name} {
+    @content;
+  }
+  @keyframes #{$name} {
+    @content;
   }
 }
