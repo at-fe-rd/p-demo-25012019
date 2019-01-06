@@ -49,6 +49,15 @@ export class CharactorList extends React.Component<CharactorList.Props, Characto
       this.setState({
         isLoading: false
       });
+    }).catch((err: any) => {
+      this.props.alert.show({
+        type: 'danger',
+        msg: 'Failed to load data. Please try again!',
+        timeout: 10000
+      });
+      this.setState({
+        isLoading: false
+      });
     });
   }
 
