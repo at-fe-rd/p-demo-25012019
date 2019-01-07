@@ -16,12 +16,12 @@ module.exports = {
   entry: {
     app: './main.tsx',
     styles: [
-      './stylesheet/style.scss'
+      './assets/stylesheet/style.scss'
     ]
   },
   output: {
     path: outPath,
-    filename: 'bundle.js',
+    filename: '[name].js',
     chunkFilename: '[name].js'
   },
   target: 'web',
@@ -52,9 +52,9 @@ module.exports = {
         test: /\.scss$/,
         use: [
           MiniCssExtractPlugin.loader, {
-          loader: "css-loader"
+          loader: 'css-loader'
         }, {
-          loader: "sass-loader",
+          loader: 'sass-loader',
           options: {
             sourceMap: true
           }
@@ -62,7 +62,7 @@ module.exports = {
       },
       // static assets
       { test: /\.html$/, use: 'html-loader' },
-      { test: /\.(a?png|svg)$/, use: 'url-loader?limit=10000' },
+      { test: /\.(a?png|svg)$/, use: 'url-loader?name=assets/[folder]/[name].[hash:20].[ext]&limit=10000' },
       { test: /\.(jpe?g|gif|bmp|mp3|mp4|ogg|wav|eot|ttf|woff|woff2)$/, use: 'file-loader' }
     ]
   },
