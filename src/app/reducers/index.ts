@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 import { RootState } from './state';
-import { featureReducer } from 'app/features/feature.reducers';
+import { featureReducer } from 'app/components/features/feature.reducers';
 import { alertReducer } from 'app/components/shared/alert/alert.reducers';
 
 export { RootState };

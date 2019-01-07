@@ -22,6 +22,7 @@ export interface Alert {
 export class Alert extends React.Component<Alert.Props, Alert.State> {
 
   private timer: any;
+  private timerClear: any;
 
   constructor(props: Alert.Props, context?: any) {
     super(props, context);
@@ -35,13 +36,16 @@ export class Alert extends React.Component<Alert.Props, Alert.State> {
       cls: 'fade-out'
     });
     clearTimeout(this.timer);
-    setTimeout(() => {
+    clearTimeout(this.timerClear);
+    this.timerClear = setTimeout(() => {
       this.props.alerter.clear();
+      clearTimeout(this.timerClear);
     }, 1000);
   }
 
   showMe = () => {
     clearTimeout(this.timer);
+    clearTimeout(this.timerClear);
     this.setState(
       {
         cls: 'fade-in'

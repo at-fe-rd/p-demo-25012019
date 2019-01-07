@@ -6,9 +6,9 @@ import { RootState } from 'app/reducers';
 import { omit } from 'app/utils';
 import { Header, Footer, Alert } from 'app/components';
 import { AlertActions } from 'app/components/shared/alert/alert.actions';
-import { CharacterActions } from 'app/features/charactor/charactor.actions';
-import { CharactorForm } from 'app/features/charactor/components/charactor-form';
-import { CharactorList } from 'app/features/charactor/components/charactor-list';
+import { CharacterActions } from 'app/components/features/charactor/charactor.actions';
+import { CharactorForm } from 'app/components/features/charactor/components/charactor-form';
+import { CharactorList } from 'app/components/features/charactor/components/charactor-list';
 
 export namespace App {
   export interface Props extends RouteComponentProps<void> {
