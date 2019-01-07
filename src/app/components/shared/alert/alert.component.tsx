@@ -50,7 +50,7 @@ export class Alert extends React.Component<Alert.Props, Alert.State> {
       {
         cls: 'fade-in'
       },
-      // this.autoHide
+      this.autoHide
     );
   }
 
