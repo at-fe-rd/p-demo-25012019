@@ -129,9 +129,9 @@
           flex-wrap: $wrap;
 }
 @mixin alert-variant($background, $border, $text-color) {
-  color: $text-color;
-  background-color: $background;
-  border-color: $border;
+  color: map-get($color, $text-color);
+  background-color: map-get($color, $background);
+  border-color: map-get($color, $border);
 }
 @mixin animation($name) {
   -webkit-animation: $name;

@@ -1,52 +1,43 @@
 .alert {
-  @include border-radius(4px);
+  @include border-radius(3px);
+  @include box-shadow(0 0 10px map-get($color, gray));
   text-align:left;
   padding: 15px 0;
   max-width: 300px;
-  left: 50%;
+  right: 15px;
   position: fixed;
   z-index: 9999;
   display: none;
   transition: transform 5s ease-in-out;
   box-sizing: border-box;
-  border: 1px solid transparent;
-  transform: translateX(-50%);
+  &:hover {
+    @include box-shadow(0 0 10px map-get($color, secondary));
+    opacity: 1;
+    cursor: pointer;
+  }
   .alert-icon {
     @include border-radius(50%);
-    // color: map-get($color, white);
     position: absolute;
     top: 50%;
     left: 10px;
     transform: translateY(-50%);
     line-height: 24px;
     display: inline-block;
-    font-size: 32px;
+    font-size: 28px;
   }
   .alert-content {
     padding: 0 48px;
   }
 }
 .alert-success {
-  @include alert-variant(map-get($color, alert-success-bg), map-get($color, alert-success-border), map-get($color, alert-success-text));
-  .alert-icon {
-    color: map-get($color, alert-success-text);
-  }
+  @include alert-variant(alert-success-bg, alert-success-border, white);
 }
 .alert-info {
-  @include alert-variant(map-get($color, alert-info-bg), map-get($color, alert-info-border), map-get($color, alert-info-text));
-  .alert-icon {
-    color: map-get($color, alert-info-text);
-  }
+  @include alert-variant(alert-info-bg, alert-info-border,white);
 }
 .alert-warning {
-  @include alert-variant(map-get($color, alert-warning-bg), map-get($color, alert-warning-border), map-get($color, alert-warning-text));
-  .alert-icon {
-    color: map-get($color, alert-warning-text);
-  }
+  @include alert-variant(alert-warning-bg, alert-warning-border, white);
 }
 .alert-danger {
-  @include alert-variant(map-get($color, alert-danger-bg), map-get($color, alert-danger-border), map-get($color, alert-danger-text));
-  .alert-icon {
-    color: map-get($color, alert-danger-text);
-  }
+  @include alert-variant(alert-danger-bg, alert-danger-border, white);
 }
