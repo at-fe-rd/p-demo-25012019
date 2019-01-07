@@ -15,17 +15,17 @@
 }
 @include keyframes(topFadeIn) {
   0% {
-    top: -100px;
+    @include transform(translateY(-100%));
   }
   100% {
-    top: 12px;
+    @include transform(translateY(0));
   }
-}
-@include keyframes(fadeOut) {
+ }
+ @include keyframes(fadeOut) {
   0% {
-    top: 12px;
+    @include transform(translateY(0));
   }
   100% {
-    top: -100px;
+    @include transform(translateY(-150%));
   }
 }
