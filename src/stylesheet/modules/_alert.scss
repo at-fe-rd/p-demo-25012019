@@ -30,26 +30,14 @@
   }
 }
 .alert-success {
-  @include alert-variant(map-get($color, alert-success-bg), map-get($color, alert-success-border), map-get($color, white));
-  .alert-icon {
-    color: map-get($color, alert-success-text);
-  }
+  @include alert-variant(alert-success-bg, alert-success-border, white);
 }
 .alert-info {
-  @include alert-variant(map-get($color, alert-info-bg), map-get($color, alert-info-border), map-get($color, white));
-  .alert-icon {
-    color: map-get($color, alert-info-text);
-  }
+  @include alert-variant(alert-info-bg, alert-info-border,white);
 }
 .alert-warning {
-  @include alert-variant(map-get($color, alert-warning-bg), map-get($color, alert-warning-border), map-get($color, white));
-  .alert-icon {
-    color: map-get($color, alert-warning-text);
-  }
+  @include alert-variant(alert-warning-bg, alert-warning-border, white);
 }
 .alert-danger {
-  @include alert-variant(map-get($color, alert-danger-bg), map-get($color, alert-danger-border), map-get($color, white));
-  .alert-icon {
-    color: map-get($color, alert-danger-text);
-  }
+  @include alert-variant(alert-danger-bg, alert-danger-border, white);
 }
