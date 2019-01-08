@@ -1,0 +1,64 @@
+
+.popover {
+  @include transform(translateY(10px));
+  @include transition(all .25s ease-out);
+  @include box-shadow(0px 2px 6px map-get($color, rgba-black-a));
+  @include border-radius(3px);
+  position: absolute;
+  top: -180px;
+  left: -130px;
+  width: 300px;
+  z-index: 9999;
+  display: none;
+  opacity: 0;
+  margin-bottom: 15px;
+  text-align: left;
+  background: map-get($color, white);
+  border: 1px solid map-get($color, border);
+  &:before, &:after {
+    content: "";
+    position: absolute;
+    border-style: solid;
+    border-width: 11px 11px 0;
+    display: block;
+  }
+  &:before {
+    top: 100%;
+    left: 130px;
+    border-color: map-get($color, rgba-black-a) transparent;
+  }
+  &:after {
+    bottom: -10px;
+    left: 130px;
+    border-color: map-get($color, white) transparent;
+  }
+  .popover-title {
+    background-color: map-get($color, white-c);
+    border-bottom: 1px solid map-get($color, white-e);
+    padding: 10px 15px;
+    line-height: 24px;
+    font-size: 18px;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    font-weight: bold;
+    margin-bottom: 0;
+  }
+  .popover-content {
+    padding: 25px 15px;
+  }
+  .popover-footer {
+    padding: 10px 15px;
+    border-top: 1px solid map-get($color, white-e);
+    text-align: right;
+  }
+}
+.btn-delete {
+  display: inline-block;
+  position: relative;
+  margin-left: 10px;
+  .show-popover {
+    @include transform(translateY(0px));
+    display: block;
+    opacity: 1;
+  }
+}

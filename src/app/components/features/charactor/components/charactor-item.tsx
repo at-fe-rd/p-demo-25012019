@@ -9,9 +9,29 @@ export namespace CharacterItem {
     character: any;
     alert: any;
   }
+  export interface State {
+    isShow: any;
+  }
 }
 
-export class CharacterItem extends React.Component<CharacterItem.Props> {
+export class CharacterItem extends React.Component<CharacterItem.Props, CharacterItem.State> {
+  constructor(props: CharacterItem.Props) {
+    super(props);
+    this.state = {
+      isShow: ''
+    };
+  }
+
+  showPopover = () => {
+    this.setState({
+      isShow: 'show-popover'
+    })
+  }
+  hidePopover = () => {
+    this.setState({
+      isShow: ''
+    })
+  }
 
   handleDelete = () => {
     this.onDelete();
@@ -67,7 +87,20 @@ export class CharacterItem extends React.Component<CharacterItem.Props> {
         <td className="col-1 no-wrap">
           <div className="btn-group">
             <button type="button" onClick={this.handleUpdate}  className="btn btn-outline btn-success btn-sm">+1</button>
-            <button type="button" onClick={this.handleDelete} className="btn btn-outline btn-danger btn-sm">削除</button>
+            <div className="btn-delete">
+              <button type="button" onClick={this.showPopover} className="btn btn-outline btn-danger btn-sm">削除</button>
+              <div className={`${this.state.isShow} popover`}>
+                <div className="arrow"></div>
+                <h3 className="popover-title">Confirmation</h3>
+                <div className="popover-content">
+                  Do you want to delete ?
+                </div>
+                <div className="popover-footer">
+                  <button onClick={this.hidePopover} className="btn btn-outline btn-success btn-sm">Cancel</button>
+                  <button onClick={this.handleDelete} className="btn btn-outline btn-danger btn-sm">OK</button>
+                </div>
+              </div>
+            </div>
           </div>
         </td>
       </tr>
