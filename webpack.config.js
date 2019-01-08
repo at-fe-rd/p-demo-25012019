@@ -10,6 +10,7 @@ var outPath = path.join(__dirname, './build');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var MiniCssExtractPlugin = require('mini-css-extract-plugin');
 var WebpackCleanupPlugin = require('webpack-cleanup-plugin');
+var CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
   context: sourcePath,
@@ -62,7 +63,7 @@ module.exports = {
       },
       // static assets
       { test: /\.html$/, use: 'html-loader' },
-      { test: /\.(a?png|svg)$/, use: 'url-loader?name=assets/[folder]/[name].[hash:20].[ext]&limit=10000' },
+      { test: /\.(a?png|svg)$/, use: 'url-loader' },
       { test: /\.(jpe?g|gif|bmp|mp3|mp4|ogg|wav|eot|ttf|woff|woff2)$/, use: 'file-loader' }
     ]
   },
@@ -88,6 +89,13 @@ module.exports = {
       NODE_ENV: 'development', // use 'development' unless process.env.NODE_ENV is defined
       DEBUG: false
     }),
+    new CopyWebpackPlugin([
+      {
+        from: 'assets',
+        to: 'assets',
+        ignore: ['stylesheet']
+      } 
+    ]),
     new WebpackCleanupPlugin(),
     // new ExtractTextPlugin('style.css'),
     new MiniCssExtractPlugin({
