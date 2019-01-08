@@ -86,7 +86,7 @@ export class CharacterItem extends React.Component<CharacterItem.Props, Characte
         </td>
         <td className="col-1 no-wrap">
           <div className="btn-group">
-            <button type="button" onClick={this.handleUpdate}  className="btn btn-outline btn-success btn-sm">+1</button>
+            <button disabled={+character.age === 999} type="button" onClick={this.handleUpdate}  className="btn btn-outline btn-success btn-sm">+1</button>
             <div className="btn-delete">
               <button type="button" onClick={this.showPopover} className="btn btn-outline btn-danger btn-sm">削除</button>
               <div className={`${this.state.isShow} popover`}>
