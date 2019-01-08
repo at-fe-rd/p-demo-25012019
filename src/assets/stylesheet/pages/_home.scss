@@ -46,11 +46,6 @@
   display: inline-block;
   position: relative;
   margin-left: 10px;
-  .show-popover {
-    @include transform(translateY(0px));
-    display: block;
-    opacity: 1;
-  }
 }
 @include respond-below(small) {
   .form-group {
