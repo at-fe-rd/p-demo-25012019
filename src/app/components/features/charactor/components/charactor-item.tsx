@@ -90,7 +90,6 @@ export class CharacterItem extends React.Component<CharacterItem.Props, Characte
             <div className="btn-delete">
               <button type="button" onClick={this.showPopover} className="btn btn-outline btn-danger btn-sm">削除</button>
               <div className={`${this.state.isShow} popover`}>
-                <div className="arrow"></div>
                 <h3 className="popover-title">Confirmation</h3>
                 <div className="popover-content">
                   Do you want to delete ?
