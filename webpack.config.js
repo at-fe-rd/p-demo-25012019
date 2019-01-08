@@ -11,9 +11,11 @@ var HtmlWebpackPlugin = require('html-webpack-plugin');
 var MiniCssExtractPlugin = require('mini-css-extract-plugin');
 var WebpackCleanupPlugin = require('webpack-cleanup-plugin');
 var CopyWebpackPlugin = require('copy-webpack-plugin');
+var ENV = 'prod';
 
 module.exports = {
   context: sourcePath,
+  devtool: 'source-map',
   entry: {
     app: './main.tsx',
     styles: [
@@ -89,6 +91,10 @@ module.exports = {
       NODE_ENV: 'development', // use 'development' unless process.env.NODE_ENV is defined
       DEBUG: false
     }),
+    new webpack.NormalModuleReplacementPlugin(
+      /env\/index.ts/,
+      `${ENV}.ts`
+    ),
     new CopyWebpackPlugin([
       {
         from: 'assets',
