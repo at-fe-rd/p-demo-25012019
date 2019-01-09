@@ -32,14 +32,13 @@
     border-color: map-get($color, white) transparent;
   }
   .popover-title {
+    @include border-corner-radius(3px, 3px, 0, 0);
     background-color: map-get($color, primary);
     border-bottom: 1px solid map-get($color, white-e);
     color: map-get($color, white);
     padding: 8px 15px;
     line-height: 24px;
     font-size: 18px;
-    border-top-left-radius: 3px;
-    border-top-right-radius: 3px;
     font-weight: bold;
     margin-bottom: 0;
   }
