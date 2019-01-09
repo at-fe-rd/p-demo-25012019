@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { API } from 'app/utils/api';
 import { CharacterModel } from 'app/models/CharacterModel';
-
+import { ConfirmDialog } from '../../../shared/dialog/dialog.component'
 export namespace CharacterItem {
   export interface Props {
     updateCharactor: (character: CharacterModel) => void;
@@ -10,7 +10,7 @@ export namespace CharacterItem {
     alert: any;
   }
   export interface State {
-    isShow: any;
+    selectedItem: number;
   }
 }
 
@@ -18,18 +18,18 @@ export class CharacterItem extends React.Component<CharacterItem.Props, Characte
   constructor(props: CharacterItem.Props) {
     super(props);
     this.state = {
-      isShow: ''
+      selectedItem: 0
     };
   }
 
   showPopover = () => {
     this.setState({
-      isShow: 'show-popover'
+      selectedItem: this.props.character.id
     })
   }
   hidePopover = () => {
     this.setState({
-      isShow: ''
+      selectedItem: 0
     })
   }
 
@@ -89,16 +89,13 @@ export class CharacterItem extends React.Component<CharacterItem.Props, Characte
             <button disabled={+character.age === 999} type="button" onClick={this.handleUpdate}  className="btn btn-outline btn-success btn-sm">+1</button>
             <div className="popup-button-container">
               <button type="button" onClick={this.showPopover} className="btn btn-outline btn-danger btn-sm">削除</button>
-              <div className={`popover ${this.state.isShow}`}>
-                <h3 className="popover-title">Confirmation</h3>
-                <div className="popover-content">
-                  Do you want to delete ?
-                </div>
-                <div className="popover-footer">
-                  <button onClick={this.handleDelete} className="btn btn-outline btn-danger btn-sm">OK</button>
-                  <button onClick={this.hidePopover} className="btn btn-outline btn-success btn-sm">Cancel</button>
-                </div>
-              </div>
+              {
+                this.state.selectedItem === character.id ?
+                  <ConfirmDialog message="Do you want to delete ?"
+                    sayNo={this.hidePopover}
+                    sayYes={this.handleDelete}/>
+                  : null
+              }
             </div>
           </div>
         </td>
