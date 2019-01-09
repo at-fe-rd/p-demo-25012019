@@ -8,29 +8,21 @@ export namespace CharacterItem {
     deleteCharactor: (id: number) => void;
     character: any;
     alert: any;
-  }
-  export interface State {
-    selectedItem: number;
+    selectCharactor: any;
+    open: boolean;
   }
 }
 
-export class CharacterItem extends React.Component<CharacterItem.Props, CharacterItem.State> {
+export class CharacterItem extends React.Component<CharacterItem.Props> {
   constructor(props: CharacterItem.Props) {
     super(props);
-    this.state = {
-      selectedItem: 0
-    };
   }
 
   showPopover = () => {
-    this.setState({
-      selectedItem: this.props.character.id
-    })
+    this.props.selectCharactor(this.props.character.id);
   }
   hidePopover = () => {
-    this.setState({
-      selectedItem: 0
-    })
+    this.props.selectCharactor(0);
   }
 
   handleDelete = () => {
@@ -74,7 +66,7 @@ export class CharacterItem extends React.Component<CharacterItem.Props, Characte
   }
 
   render() {
-    const { character } = this.props;
+    const { character, open } = this.props;
     return (
       <tr>
         <td className="col-3 no-wrap">
@@ -90,7 +82,7 @@ export class CharacterItem extends React.Component<CharacterItem.Props, Characte
             <div className="popup-button-container">
               <button type="button" onClick={this.showPopover} className="btn btn-outline btn-danger btn-sm">削除</button>
               {
-                this.state.selectedItem === character.id ?
+                open ?
                   <ConfirmDialog message="Do you want to delete ?"
                     sayNo={this.hidePopover}
                     sayYes={this.handleDelete}/>
