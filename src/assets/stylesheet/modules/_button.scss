@@ -12,7 +12,6 @@ button, .btn {
   cursor: pointer;
   text-transform: uppercase;
   zoom: 1;
-  line-height: 20px;
   &:disabled, [disabled] {
     border: 1px solid map-get($color, gray-a)!important;
     background-color: map-get($color, gray-b)!important;

@@ -1,11 +1,3 @@
-import { any } from "prop-types";
-
-2
-3
-4
-5
-6
-7
 /**
  * Validates whether a field has a value
  * @param {IValues} values - All the field values in the form
@@ -24,5 +16,4 @@ export class FormValidation {
   constructor() {
     //
   }
-  
 }

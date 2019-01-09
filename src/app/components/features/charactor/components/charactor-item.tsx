@@ -89,14 +89,14 @@ export class CharacterItem extends React.Component<CharacterItem.Props, Characte
             <button disabled={+character.age === 999} type="button" onClick={this.handleUpdate}  className="btn btn-outline btn-success btn-sm">+1</button>
             <div className="popup-button-container">
               <button type="button" onClick={this.showPopover} className="btn btn-outline btn-danger btn-sm">削除</button>
-              <div className={`${this.state.isShow} popover`}>
+              <div className={`popover ${this.state.isShow}`}>
                 <h3 className="popover-title">Confirmation</h3>
                 <div className="popover-content">
                   Do you want to delete ?
                 </div>
                 <div className="popover-footer">
-                  <button onClick={this.hidePopover} className="btn btn-outline btn-success btn-sm">Cancel</button>
                   <button onClick={this.handleDelete} className="btn btn-outline btn-danger btn-sm">OK</button>
+                  <button onClick={this.hidePopover} className="btn btn-outline btn-success btn-sm">Cancel</button>
                 </div>
               </div>
             </div>
