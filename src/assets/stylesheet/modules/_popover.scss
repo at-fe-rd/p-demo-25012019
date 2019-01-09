@@ -55,9 +55,9 @@
       text-transform: capitalize;
     }
   }
-}
-.show-popover {
-  @include transform(translateY(0px));
-  display: block;
-  opacity: 1;
+  &.show-popover {
+    @include transform(translateY(0px));
+    display: block;
+    opacity: 1;
+  }
 }

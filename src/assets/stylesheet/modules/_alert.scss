@@ -41,6 +41,8 @@
 .alert-danger {
   @include alert-variant(alert-danger-bg, alert-danger-border, white);
 }
-.alert-undefined.fade-out {
-  display: none;
+.alert-undefined {
+  &.fade-out {
+    display: none;
+  }
 }
