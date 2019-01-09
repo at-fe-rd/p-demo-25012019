@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { API } from 'app/utils/api';
 import { CharacterModel } from 'app/models/CharacterModel';
-import { ConfirmDialog } from '../../../shared/confirm/confirm.component'
+import { ConfirmDialog } from '../../../shared/dialog/dialog.component'
 export namespace CharacterItem {
   export interface Props {
     updateCharactor: (character: CharacterModel) => void;
@@ -10,8 +10,7 @@ export namespace CharacterItem {
     alert: any;
   }
   export interface State {
-    isShow: boolean;
-    messageDialog: string;
+    isSelected: string;
   }
 }
 
@@ -19,19 +18,18 @@ export class CharacterItem extends React.Component<CharacterItem.Props, Characte
   constructor(props: CharacterItem.Props) {
     super(props);
     this.state = {
-      isShow: false,
-      messageDialog: 'Do you want to delete ?'
+      isSelected: '',
     };
   }
 
   showPopover = () => {
     this.setState({
-      isShow: true
+      isSelected: this.props.character.id
     })
   }
   hidePopover = () => {
     this.setState({
-      isShow: false
+      isSelected: ''
     })
   }
 
@@ -91,8 +89,8 @@ export class CharacterItem extends React.Component<CharacterItem.Props, Characte
             <button disabled={+character.age === 999} type="button" onClick={this.handleUpdate}  className="btn btn-outline btn-success btn-sm">+1</button>
             <div className="popup-button-container">
               <button type="button" onClick={this.showPopover} className="btn btn-outline btn-danger btn-sm">削除</button>
-              { this.state.isShow ?
-                <ConfirmDialog message={this.state.messageDialog}
+              { this.state.isSelected === character.id?
+                <ConfirmDialog message="Do you want to delete ?"
                               sayNo={this.hidePopover}
                               sayYes={this.handleDelete} />
                 : null
