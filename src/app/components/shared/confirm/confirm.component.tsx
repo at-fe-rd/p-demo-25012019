@@ -12,7 +12,6 @@ export namespace ConfirmDialog {
 
 export class ConfirmDialog extends React.Component<ConfirmDialog.Props> {
 
-
   constructor(props: ConfirmDialog.Props, context?: any) {
     super(props, context);
   }
@@ -20,7 +19,7 @@ export class ConfirmDialog extends React.Component<ConfirmDialog.Props> {
   render() {
     const { message, sayNo, sayYes } = this.props;
     return (
-      <div className={`popover`}>
+      <div className="popover">
         <h3 className="popover-title">Confirmation</h3>
         <div className="popover-content">
           { message }
@@ -32,4 +31,5 @@ export class ConfirmDialog extends React.Component<ConfirmDialog.Props> {
       </div>
     );
   }
+
 }
