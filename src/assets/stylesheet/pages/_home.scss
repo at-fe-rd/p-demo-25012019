@@ -42,6 +42,11 @@
     }
   }
 }
+.popup-button-container {
+  display: inline-block;
+  position: relative;
+  margin-left: 10px;
+}
 @include respond-below(small) {
   .form-group {
     width: 100%;
