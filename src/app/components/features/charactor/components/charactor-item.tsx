@@ -9,7 +9,7 @@ export namespace CharacterItem {
     character: any;
     alert: any;
     selectCharactor: any;
-    open: boolean;
+    isOpen: boolean;
   }
 }
 
@@ -66,7 +66,7 @@ export class CharacterItem extends React.Component<CharacterItem.Props> {
   }
 
   render() {
-    const { character, open } = this.props;
+    const { character, isOpen } = this.props;
     return (
       <tr>
         <td className="col-3 no-wrap">
@@ -82,7 +82,7 @@ export class CharacterItem extends React.Component<CharacterItem.Props> {
             <div className="popup-button-container">
               <button type="button" onClick={this.showPopover} className="btn btn-outline btn-danger btn-sm">削除</button>
               {
-                open ?
+                isOpen ?
                   <ConfirmDialog message="Do you want to delete ?"
                     sayNo={this.hidePopover}
                     sayYes={this.handleDelete}/>

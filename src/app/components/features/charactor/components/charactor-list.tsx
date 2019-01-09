@@ -15,7 +15,7 @@ export namespace CharactorList {
   export interface State {
     isLoading?: boolean;
     canLoadmore: boolean;
-    selectedItem: number;
+    selectedItem: number | undefined;
   }
 }
 
@@ -25,7 +25,7 @@ export class CharactorList extends React.Component<CharactorList.Props, Characto
     super(props, state);
     this.state = {
       canLoadmore: true,
-      selectedItem: 0,
+      selectedItem: undefined,
     };
   }
 
@@ -94,7 +94,7 @@ export class CharactorList extends React.Component<CharactorList.Props, Characto
                 deleteCharactor={onDelete}
                 alert={alert}
                 selectCharactor={this.onSelect}
-                open={this.state.selectedItem === item.id} />
+                isOpen={this.state.selectedItem === item.id} />
             ))}
           </tbody>
         </table>
