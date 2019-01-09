@@ -10,7 +10,7 @@ export namespace CharacterItem {
     alert: any;
   }
   export interface State {
-    isSelected: string;
+    selectedItem: number;
   }
 }
 
@@ -18,18 +18,18 @@ export class CharacterItem extends React.Component<CharacterItem.Props, Characte
   constructor(props: CharacterItem.Props) {
     super(props);
     this.state = {
-      isSelected: '',
+      selectedItem: 0
     };
   }
 
   showPopover = () => {
     this.setState({
-      isSelected: this.props.character.id
+      selectedItem: this.props.character.id
     })
   }
   hidePopover = () => {
     this.setState({
-      isSelected: ''
+      selectedItem: 0
     })
   }
 
@@ -89,11 +89,12 @@ export class CharacterItem extends React.Component<CharacterItem.Props, Characte
             <button disabled={+character.age === 999} type="button" onClick={this.handleUpdate}  className="btn btn-outline btn-success btn-sm">+1</button>
             <div className="popup-button-container">
               <button type="button" onClick={this.showPopover} className="btn btn-outline btn-danger btn-sm">削除</button>
-              { this.state.isSelected === character.id?
-                <ConfirmDialog message="Do you want to delete ?"
-                              sayNo={this.hidePopover}
-                              sayYes={this.handleDelete} />
-                : null
+              {
+                this.state.selectedItem === character.id ?
+                  <ConfirmDialog message="Do you want to delete ?"
+                    sayNo={this.hidePopover}
+                    sayYes={this.handleDelete}/>
+                  : null
               }
             </div>
           </div>
