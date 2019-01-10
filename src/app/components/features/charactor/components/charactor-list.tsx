@@ -93,9 +93,9 @@ export class CharactorList extends React.Component<CharactorList.Props, Characto
                 character={item}
                 updateCharactor={onUpdate}
                 deleteCharactor={onDelete}
-                alert={alert}
                 selectCharactor={this.onSelect}
-                isVisible={selectedItem === item.id} />
+                isVisible={selectedItem === item.id}
+                alert={alert}/>
             ))}
           </tbody>
         </table>
