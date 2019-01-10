@@ -71,7 +71,7 @@ export class Alert extends React.Component<Alert.Props, Alert.State> {
     return (
       <div className={`alert alert-${type} ${this.state.cls}`}>
         <div className="alert-icon">
-          <i className="fa fa-check" aria-hidden="true"></i>
+          <i className="fa fa-info-circle" aria-hidden="true"></i>
         </div>
         <div className="alert-content">
           {msg}
