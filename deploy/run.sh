@@ -66,7 +66,7 @@ pre_build() {
 build() {
   printf "$cyan> Starting a $ENV_NAME build process...$reset\n"
   # echo $password | $SUDO npm run reinstall && npm run build.$BUILD_ENV
-  npm run reinstall && npm run build.$BUILD_ENV
+  npm run install && npm run build.$BUILD_ENV
 
   printf "$green> Version $version build successful!$reset\n"
 }
