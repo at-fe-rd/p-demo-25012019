@@ -71,6 +71,7 @@ export class CharactorList extends React.Component<CharactorList.Props, Characto
 
   render() {
     const { onDelete, onUpdate, data, alert } = this.props;
+    const { selectedItem, canLoadmore} = this.state;
     return (
       <section className="list-users">
         <h2 className="home-title">キャラクター</h2>
@@ -94,12 +95,12 @@ export class CharactorList extends React.Component<CharactorList.Props, Characto
                 deleteCharactor={onDelete}
                 alert={alert}
                 selectCharactor={this.onSelect}
-                isOpen={this.state.selectedItem === item.id} />
+                isVisible={selectedItem === item.id} />
             ))}
           </tbody>
         </table>
         <div className="view-more center-text">
-          <button disabled={!this.state.canLoadmore} onClick={this.loadMore} className={`btn btn-outline btn-animated ${this.state.isLoading ? 'show' : 'hide'}`}>
+          <button disabled={!canLoadmore} onClick={this.loadMore} className={`btn btn-outline btn-animated ${this.state.isLoading ? 'show' : 'hide'}`}>
             <span className="animated-icon">
               <i className="fa fa-spinner fa-spin"></i>
             </span>
