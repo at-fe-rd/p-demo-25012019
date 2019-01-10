@@ -84,7 +84,7 @@ deploy() {
   sudo -S rm -rf $PUBLIC_HTML*
 
   printf "$cyan> Moving new app to root folder...\n"
-  sudo -S mv ~/$SOURCE_DIR/build/* $PUBLIC_HTML
+  sudo -S mv $SOURCE_DIR/build/* $PUBLIC_HTML
 
   if [ "$2" = "--maintenance" ]; then
     printf "$red> Server $ENV_NAME has suspended!$reset\n"

@@ -6,7 +6,7 @@
   "homepage": "https://rokoroku.github.io/typescript-react-redux-boilerplate",
   "main": "index.js",
   "scripts": {
-    "deploy": "bash deploy/staging.sh",
+    "deploy": "bash deploy/staging.sh --stg",
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "webpack-dev-server --mode development --hot --progress --color --port 2612 --open",
     "build": "webpack -p --progress --colors",
