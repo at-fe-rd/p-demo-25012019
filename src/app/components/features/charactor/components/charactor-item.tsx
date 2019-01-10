@@ -38,12 +38,12 @@ export class CharacterItem extends React.Component<CharacterItem.Props> {
       this.props.deleteCharactor(this.props.character.id);
       this.props.alert.show({
         type: 'warning',
-        msg: `Charactor ${this.props.character.name} was deleted.`
+        msg: `${this.props.character.name}を削除しますした。`
       });
     }).catch((err: any) => {
       this.props.alert.show({
         type: 'danger',
-        msg: 'Failed to delete!',
+        msg: `${this.props.character.name}は削除できません。`,
         timeout: 10000
       });
     });
@@ -54,12 +54,12 @@ export class CharacterItem extends React.Component<CharacterItem.Props> {
       this.props.updateCharactor(res.data);
       this.props.alert.show({
         type: 'success',
-        msg: `${res.data.name}'s age was increase to ${res.data.age}.`
+        msg: `${res.data.name}の年齢は${res.data.age}を上げました。`
       });
     }).catch((err: any) => {
       this.props.alert.show({
         type: 'danger',
-        msg: 'Failed to update!',
+        msg: '更新が失敗しました。後でもう一度やり直してください。',
         timeout: 10000
       });
     });
@@ -83,7 +83,7 @@ export class CharacterItem extends React.Component<CharacterItem.Props> {
               <button type="button" onClick={this.showPopover} className="btn btn-outline btn-danger btn-sm">削除</button>
               {
                 isVisible ?
-                  <ConfirmDialog message="Do you want to delete ?"
+                  <ConfirmDialog message={`${this.props.character.name}を削除しますか？`}
                     sayNo={this.hidePopover}
                     sayYes={this.handleDelete}/>
                   : null

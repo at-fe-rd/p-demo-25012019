@@ -57,13 +57,13 @@ export class CharactorForm extends React.Component<CharactorForm.Props, Characto
       this.props.onSave(res.data);
       this.props.alerter.show({
         type: 'success',
-        msg: 'Registered Successfully'
+        msg: `${res.data.name}を追加しました。`
       });
       this.resetForm();
     }).catch((err: any) => {
       this.props.alerter.show({
         type: 'danger',
-        msg: 'Registration failed',
+        msg: '登録が失敗しました。後でもう一度やり直してください。',
         timeout: 10000
       });
       this.setState({

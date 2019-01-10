@@ -54,7 +54,7 @@ export class CharactorList extends React.Component<CharactorList.Props, Characto
     }).catch((err: any) => {
       this.props.alert.show({
         type: 'danger',
-        msg: 'Failed to load data. Please try again!',
+        msg: 'データ接続が失敗しました。後でもう一度やり直してください。',
         timeout: 10000
       });
       this.setState({

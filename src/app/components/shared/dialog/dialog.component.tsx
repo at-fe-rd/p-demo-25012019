@@ -20,13 +20,13 @@ export class ConfirmDialog extends React.Component<ConfirmDialog.Props> {
     const { message, sayNo, sayYes } = this.props;
     return (
       <div className="popover">
-        <h3 className="popover-title">Confirmation</h3>
+        <h3 className="popover-title">確認</h3>
         <div className="popover-content">
-          { message }
+          {message}
         </div>
         <div className="popover-footer">
-          <button onClick={ sayYes } className="btn btn-outline btn-danger btn-sm">OK</button>
-          <button onClick={ sayNo } className="btn btn-outline btn-success btn-sm">Cancel</button>
+          <button onClick={sayYes} className="btn btn-outline btn-danger btn-sm">はい</button>
+          <button onClick={sayNo} className="btn btn-outline btn-default btn-sm">キャンセル</button>
         </div>
       </div>
     );
