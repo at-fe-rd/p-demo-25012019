@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { CharacterModel } from 'app/models/CharacterModel';
 import { API } from 'app/utils/api';
+import { Form, Input, ControlStatus, Field } from 'app/components';
 
 export namespace CharactorForm {
   export interface Props {
@@ -8,8 +9,7 @@ export namespace CharactorForm {
     alerter: any;
   }
   export interface State {
-    fields: any;
-    errors?: any;
+    fields: { [key: string]: Field };
     isProcessing: boolean;
     isFormValid: boolean;
   }
@@ -17,39 +17,32 @@ export namespace CharactorForm {
 
 export class CharactorForm extends React.Component<CharactorForm.Props, CharactorForm.State> {
 
-  validaters: any;
+  validatePattern = {
+    name: /^.{1,10}$/,
+    age: /^\d{1,3}$/
+  };
 
   constructor(props: CharactorForm.Props) {
     super(props);
     this.state = {
       fields: {
-        name: '',
-        age: '',
-        comment: ''
+        name: new Field(),
+        age: new Field(),
+        comment: new Field()
       },
-      errors: {},
       isProcessing: false,
       isFormValid: false
     };
-    this.validaters = {
-      name: (value: any) => {
-        const regexp = /^.{1,10}$/;
-        return regexp.test(value);
-      },
-      age: (value: any) => {
-        const regexp = /^\d{1,3}$/;
-        return regexp.test(value);
-      },
-      comment: (value: any) => {
-        return true;
-      }
-    }
   }
 
   onSubmit = (e: any) => {
     e.preventDefault();
     this.setState({ isProcessing: true });
-    this.register(this.state.fields);
+    this.register({
+      name: this.state.fields.name.value,
+      age: parseInt(this.state.fields.age.value),
+      comment: this.state.fields.comment.value,
+    });
   }
 
   register = (data: CharacterModel) => {
@@ -73,75 +66,90 @@ export class CharactorForm extends React.Component<CharactorForm.Props, Characto
   }
 
   resetForm = () => {
+    const fields = {...this.state.fields};
+    fields.name.reset();
+    fields.age.reset();
+    fields.comment.reset();
     this.setState({
       isProcessing: false,
       isFormValid: false,
-      fields: {
-        name: '',
-        age: '',
-        comment: ''
-      },
-      errors: {}
+      fields
+    });
+  }
+
+  onValidate = (e: ControlStatus) => {
+    const fields = {...this.state.fields};
+    fields[e.name].error = e.errors;
+    fields[e.name].isValid = e.isValid;
+    fields[e.name].isTouched = e.isTouched;
+
+    let isFormValid = true;
+    for (let key in fields) {
+      if (fields[key].isTouched && !fields[key].isValid) {
+        isFormValid = false;
+      }
+    }
+    this.setState({
+      isFormValid: isFormValid,
+      fields
     });
   }
 
   handleChange = (e: any) => {
     const { name, value } = e.target;
     let fields = {...this.state.fields};
-    fields[name] = value;
-    // call validation after state changed
+    fields[name].value = value;
     this.setState(
-      { fields: fields },
-      this.handleValidation
+      { fields: fields }
     );
-  }
-
-  handleValidation = () => {
-    let errors: any = {};
-    let isFormValid: boolean = true;
-    for (let key in this.state.fields) {
-      if (!this.validaters[key](this.state.fields[key])) {
-        errors[key] = true;
-        isFormValid = false;
-      }
-    }
-    this.setState({
-      isFormValid: isFormValid,
-      errors: errors
-    });
   }
 
   render() {
     const {  } = this.props;
+    const { fields } = this.state;
     return (
       <section className="contact-form">
         <h2 className="home-title">登録</h2>
-        <form onSubmit={this.onSubmit}>
+        <Form onSubmit={this.onSubmit}>
           <div className="row">
             <div className="form-group col-7">
               <label className="form-label required">名前</label>
-              <input className={`form-input ${ this.state.errors['name'] ? 'invalid' : '' }`}
-                     name="name"
-                     value={this.state.fields['name']}
-                     onChange={this.handleChange} />
+              <Input
+                className={`form-input ${ fields.name.isTouched && !fields.name.isValid ? 'invalid' : '' }`}
+                name="name"
+                value={fields.name.value}
+                onChange={this.handleChange}
+                validators={{
+                  required: true,
+                  pattern: this.validatePattern.name
+                }}
+                onValidate={this.onValidate}
+              />
               <span className="error-msg">名前には1文字以上10文字以下入力してください。</span>
             </div>
             <div className="form-group col-5">
               <label className="form-label required">年齢</label>
-              <input className={`form-input ${ this.state.errors['age'] ? 'invalid' : '' }`}
-                     name="age"
-                     value={this.state.fields['age']}
-                     onChange={this.handleChange} />
+              <Input
+                className={`form-input ${ fields.age.isTouched && !fields.age.isValid ? 'invalid' : '' }`}
+                name="age"
+                value={fields.age.value}
+                onChange={this.handleChange}
+                validators={{
+                  required: true,
+                  pattern: this.validatePattern.age
+                }}
+                onValidate={this.onValidate}
+              />
               <span className="error-msg">年齢には3桁以下の数字で入力してください。</span>
             </div>
           </div>
           <div className="row">
             <div className="form-group col-12">
               <label className="form-label">コメント</label>
-              <textarea className={`form-input ${ this.state.errors['comment'] ? 'invalid' : '' }`}
+              <textarea className={`form-input ${ fields.comment.isTouched && !fields.comment.isValid ? 'invalid' : '' }`}
                         rows={5}
                         name="comment"
-                        value={this.state.fields['comment']}
+                        value={fields.comment.value}
                         onChange={this.handleChange}
                         onBlur={this.handleChange}>
               </textarea>
@@ -156,12 +164,12 @@ export class CharactorForm extends React.Component<CharactorForm.Props, Characto
                 </span>
                 <span className="animated-label">登録</span>
               </button>
-              <button type="button" onClick={this.resetForm} className="btn btn-outline btn-success" disabled={this.state.isProcessing}>
+              <button type="button" onClick={this.resetForm} className="btn btn-outline btn-success" disabled={this.state.isProcessing || !this.state.isFormValid}>
                 キャンセル
               </button>
             </div>
           </div>
-        </form>
+        </Form>
       </section>
     );
   }
