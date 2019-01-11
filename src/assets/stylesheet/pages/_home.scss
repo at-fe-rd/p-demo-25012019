@@ -1,8 +1,9 @@
 .contact-form {
-  padding: 40px 160px;
+  padding: 40px 160px 45px;
   background: map-get($color, white-c);
   margin: 60px 0;
   border: 1px solid map-get($color, border);
+  border-radius: 3px;
 }
 .list-users {
   margin: 60px 0;

@@ -29,8 +29,8 @@ button, .btn {
   color: map-get($color, secondary);
   background: transparent;
   &:hover {
-    border-color: map-get($color, border);
-    color: map-get($color, secondary);
+    border-color: map-get($color, primary);
+    color: map-get($color, primary);
     background-color: map-get($color, white);
   }
 }
