@@ -15,7 +15,6 @@ textarea {
   background: map-get($color, white);
   padding: 8px;
   &:focus {
-    border-color: #d0d0d0;
     border-color: darken(map-get($color, gray-b), 11%);
   }
 }
