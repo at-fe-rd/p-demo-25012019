@@ -34,7 +34,7 @@ export class CharacterItem extends React.Component<CharacterItem.Props> {
   }
 
   onDelete() {
-    API.delete(`/users/${this.props.character.id}`).then((res: any) => {
+    API.delete(`/characters/${this.props.character.id}`).then((res: any) => {
       this.props.deleteCharactor(this.props.character.id);
       this.props.alert.show({
         type: 'warning',
@@ -50,7 +50,7 @@ export class CharacterItem extends React.Component<CharacterItem.Props> {
   }
 
   onUpdate = () => {
-    API.patch(`/users/${this.props.character.id}`, this.props.character).then((res: any) => {
+    API.patch(`/characters/${this.props.character.id}`, this.props.character).then((res: any) => {
       this.props.updateCharactor(res.data);
       this.props.alert.show({
         type: 'success',

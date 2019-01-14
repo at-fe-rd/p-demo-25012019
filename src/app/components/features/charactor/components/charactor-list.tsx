@@ -41,13 +41,11 @@ export class CharactorList extends React.Component<CharactorList.Props, Characto
   }
 
   fetchData = () => {
-    API.get(`/users?offset=${this.props.data.length}`).then((res: any) => {
+    API.get(`/characters?offset=${this.props.data.length}`).then((res: any) => {
       this.props.onRefresh(res.data);
-      if (res.data && res.data.length < 10) {
-        this.setState({
-          canLoadmore: false
-        });
-      };
+      this.setState({
+        canLoadmore: res.data.loadmore
+      });
       this.setState({
         isLoading: false
       });
