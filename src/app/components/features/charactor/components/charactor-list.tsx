@@ -44,7 +44,7 @@ export class CharactorList extends React.Component<CharactorList.Props, Characto
     API.get(`/characters?offset=${this.props.data.length}`).then((res: any) => {
       this.props.onRefresh(res.data.characters);
       this.setState({
-        canLoadmore: res.data.loadmore
+        canLoadmore: res.data.loadMore
       });
       this.setState({
         isLoading: false
