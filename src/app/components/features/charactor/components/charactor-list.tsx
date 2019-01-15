@@ -98,7 +98,7 @@ export class CharactorList extends React.Component<CharactorList.Props, Characto
           </tbody>
         </table>
         <div className="view-more center-text">
-          <button disabled={!canLoadmore} onClick={this.loadMore} className={`btn btn-outline btn-animated ${this.state.isLoading ? 'show' : 'hide'}`}>
+          <button disabled={!canLoadmore} onClick={this.loadMore} className={`btn btn-outline btn-primary btn-animated ${this.state.isLoading ? 'show' : 'hide'}`}>
             <span className="animated-icon">
               <i className="fa fa-spinner fa-spin"></i>
             </span>

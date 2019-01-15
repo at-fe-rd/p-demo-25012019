@@ -13,8 +13,8 @@ button, .btn {
   text-transform: uppercase;
   zoom: 1;
   &:disabled, [disabled] {
-    border: 1px solid map-get($color, gray-a)!important;
-    background-color: map-get($color, gray-b)!important;
+    border: 1px solid map-get($color, gray-a) !important;
+    background-color: map-get($color, gray-b) !important;
     color: map-get($color, gray) !important;
     cursor: not-allowed;
   }
@@ -23,27 +23,37 @@ button, .btn {
   color: map-get($color, white);
   border-color: map-get($color, primary);
   background-color: map-get($color, primary);
+  &:hover {
+    background-color: map-get($color, hover-color);
+  }
 }
 .btn-outline {
   border-color: map-get($color, border);
   color: map-get($color, secondary);
-  background: transparent;
+  background-color: map-get($color, white);
   &:hover {
-    border-color: map-get($color, primary);
-    color: map-get($color, primary);
+    border-color: map-get($color, gray);
     background-color: map-get($color, white);
   }
-}
-.btn-success {
-  &:hover {
+  &.btn-success {
     color: map-get($color, primary);
     border-color: map-get($color, primary);
+    &:hover {
+      color: map-get($color, primary);
+      border-color: map-get($color, primary);
+    }
   }
-}
-.btn-danger {
-  &:hover {
-    color: map-get($color, red);
-    border-color: map-get($color, red);
+  &.btn-primary {
+    &:hover {
+      color: map-get($color, primary);
+      border-color: map-get($color, primary);
+    }
+  }
+  &.btn-danger {
+    &:hover {
+      color: map-get($color, red);
+      border-color: map-get($color, red);
+    }
   }
 }
 .btn-sm {

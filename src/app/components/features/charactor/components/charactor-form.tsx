@@ -143,7 +143,7 @@ export class CharactorForm extends React.Component<CharactorForm.Props, Characto
                 </span>
                 <span className="animated-label">登録</span>
               </button>
-              <button type="button" onClick={this.resetForm} className="btn btn-outline btn-success" disabled={this.state.isProcessing}>
+              <button type="button" onClick={this.resetForm} className="btn btn-outline btn-default" disabled={this.state.isProcessing}>
                 キャンセル
               </button>
             </div>

@@ -7,8 +7,8 @@ $breakpoints: (
   largest: 1280px
 );
 $color: (
-  primary: #30b9c1,
-  hover-color: #13a6b6,
+  primary: darken(adjust-hue(#51a351, -10), 5%),
+  hover-color: #51a351,
   secondary: #424242,
   border: #eeeeee,
   white: #ffffff,
