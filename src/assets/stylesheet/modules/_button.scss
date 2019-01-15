@@ -57,6 +57,10 @@ button, .btn {
   }
 }
 .btn-sm {
+  padding: 8px 16px;
+  font-size: map-get($font-size, sm);
+}
+.btn-xs {
   padding: 6px 8px;
   font-size: map-get($font-size, sm);
 }

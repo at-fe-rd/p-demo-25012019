@@ -78,9 +78,9 @@ export class CharacterItem extends React.Component<CharacterItem.Props> {
         </td>
         <td className="col-1 no-wrap">
           <div className="btn-group">
-            <button disabled={+character.age === 999} type="button" onClick={this.handleUpdate}  className="btn btn-outline btn-primary btn-sm">+1</button>
+            <button disabled={+character.age === 999} type="button" onClick={this.handleUpdate}  className="btn btn-outline btn-primary btn-xs">+1</button>
             <div className="popup-button-container">
-              <button type="button" onClick={this.showPopover} className="btn btn-outline btn-danger btn-sm">削除</button>
+              <button type="button" onClick={this.showPopover} className="btn btn-outline btn-danger btn-xs">削除</button>
               {
                 isVisible ?
                   <ConfirmDialog message={`${this.props.character.name}を削除しますか？`}

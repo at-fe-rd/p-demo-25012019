@@ -53,6 +53,7 @@ export class FormValidation {
       rule = field.rules[key];
       if (!rule(field.value)) {
         field.isValid = false;
+        field.errors[key] = true;
       }
     }
     if (hasChanged) {

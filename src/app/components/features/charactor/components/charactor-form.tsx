@@ -2,7 +2,6 @@ import * as React from 'react';
 import { CharacterModel } from 'app/models/CharacterModel';
 import { API } from 'app/utils/api';
 import { FormValidation } from 'app/utils/form-validation';
-import { cloneDeep } from 'app/utils/data';
 
 export namespace CharactorForm {
   export interface Props {
@@ -17,42 +16,43 @@ export namespace CharactorForm {
 
 export class CharactorForm extends React.Component<CharactorForm.Props, CharactorForm.State> {
 
-  formInitial: any;
-
   constructor(props: CharactorForm.Props) {
     super(props);
     this.state = {
       isProcessing: false,
-      form: new FormValidation(
-        {
-          name: {
-            value: '',
-            rules: {
-              character: (value: any) => {
-                const regexp = /^.{1,10}$/;
-                return regexp.test(value);
-              }
-            }
-          },
-          age: {
-            value: '',
-            rules: {
-              age: (value: any) => {
-                const regexp = /^\d{1,3}$/;
-                return regexp.test(value);
-              },
-              number: (value: any) => {
-                return +value > 0;
-              },
-            }
-          },
-          comment: {
-            value: ''
-          }
-        }
-      )
+      form: this.initForm()
     };
-    this.formInitial = cloneDeep(this.state.form);
+  }
+
+  initForm = () => {
+    return new FormValidation(
+      {
+        name: {
+          value: '',
+          rules: {
+            character: (value: any) => {
+              const regexp = /^.{1,10}$/;
+              return regexp.test(value);
+            }
+          }
+        },
+        age: {
+          value: '',
+          rules: {
+            age: (value: any) => {
+              const regexp = /^\d{1,3}$/;
+              return regexp.test(value);
+            },
+            number: (value: any) => {
+              return +value > 0;
+            },
+          }
+        },
+        comment: {
+          value: ''
+        }
+      }
+    );
   }
 
   onSubmit = (e: any) => {
@@ -84,7 +84,7 @@ export class CharactorForm extends React.Component<CharactorForm.Props, Characto
   resetForm = () => {
     this.setState({
       isProcessing: false,
-      form: this.formInitial
+      form: this.initForm()
     });
   }
 
@@ -110,7 +110,7 @@ export class CharactorForm extends React.Component<CharactorForm.Props, Characto
               <label className="form-label required">名前</label>
               <input className={`form-input ${ !this.state.form.fields['name'].isValid && this.state.form.fields['name'].isTouched ? 'invalid' : '' }`}
                      name="name"
-                     value={this.state.form.fields['name'].value}
+                     value={this.state.form.fields['name'].value || ''}
                      onChange={this.handleChange} />
               <span className="error-msg">名前には1文字以上10文字以下入力してください。</span>
             </div>
@@ -118,7 +118,7 @@ export class CharactorForm extends React.Component<CharactorForm.Props, Characto
               <label className="form-label required">年齢</label>
               <input className={`form-input ${ !this.state.form.fields['age'].isValid && this.state.form.fields['age'].isTouched ? 'invalid' : '' }`}
                      name="age"
-                     value={this.state.form.fields['age'].value}
+                     value={this.state.form.fields['age'].value || ''}
                      onChange={this.handleChange} />
               <span className="error-msg">年齢には3桁以下の数字で入力してください。</span>
             </div>
@@ -129,7 +129,7 @@ export class CharactorForm extends React.Component<CharactorForm.Props, Characto
               <textarea className={`form-input ${ !this.state.form.fields['comment'].isValid && this.state.form.fields['comment'].isTouched ? 'invalid' : '' }`}
                         rows={5}
                         name="comment"
-                        value={this.state.form.fields['comment'].value}
+                        value={this.state.form.fields['comment'].value || ''}
                         onChange={this.handleChange}>
               </textarea>
               <span className="error-msg">This field is required</span>
