@@ -1,6 +1,8 @@
 import * as React from 'react';
 import { CharacterModel } from 'app/models/CharacterModel';
 import { API } from 'app/utils/api';
+import { FormValidation } from 'app/utils/form-validation';
+import { cloneDeep } from 'app/utils/data';
 
 export namespace CharactorForm {
   export interface Props {
@@ -8,48 +10,55 @@ export namespace CharactorForm {
     alerter: any;
   }
   export interface State {
-    fields: any;
-    errors?: any;
     isProcessing: boolean;
-    isFormValid: boolean;
+    form: FormValidation;
   }
 }
 
 export class CharactorForm extends React.Component<CharactorForm.Props, CharactorForm.State> {
 
-  validaters: any;
+  formInitial: any;
 
   constructor(props: CharactorForm.Props) {
     super(props);
     this.state = {
-      fields: {
-        name: '',
-        age: '',
-        comment: ''
-      },
-      errors: {},
       isProcessing: false,
-      isFormValid: false
+      form: new FormValidation(
+        {
+          name: {
+            value: '',
+            rules: {
+              character: (value: any) => {
+                const regexp = /^.{1,10}$/;
+                return regexp.test(value);
+              }
+            }
+          },
+          age: {
+            value: '',
+            rules: {
+              age: (value: any) => {
+                const regexp = /^\d{1,3}$/;
+                return regexp.test(value);
+              },
+              number: (value: any) => {
+                return +value > 0;
+              },
+            }
+          },
+          comment: {
+            value: ''
+          }
+        }
+      )
     };
-    this.validaters = {
-      name: (value: any) => {
-        const regexp = /^.{1,10}$/;
-        return regexp.test(value);
-      },
-      age: (value: any) => {
-        const regexp = /^\d{1,3}$/;
-        return regexp.test(value);
-      },
-      comment: (value: any) => {
-        return true;
-      }
-    }
+    this.formInitial = cloneDeep(this.state.form);
   }
 
   onSubmit = (e: any) => {
     e.preventDefault();
     this.setState({ isProcessing: true });
-    this.register(this.state.fields);
+    this.register(this.state.form.data);
   }
 
   register = (data: CharacterModel) => {
@@ -75,39 +84,18 @@ export class CharactorForm extends React.Component<CharactorForm.Props, Characto
   resetForm = () => {
     this.setState({
       isProcessing: false,
-      isFormValid: false,
-      fields: {
-        name: '',
-        age: '',
-        comment: ''
-      },
-      errors: {}
+      form: this.formInitial
     });
   }
 
   handleChange = (e: any) => {
     const { name, value } = e.target;
-    let fields = {...this.state.fields};
-    fields[name] = value;
-    // call validation after state changed
-    this.setState(
-      { fields: fields },
-      this.handleValidation
-    );
+    this.state.form.fieldChange(name, value);
   }
 
-  handleValidation = () => {
-    let errors: any = {};
-    let isFormValid: boolean = true;
-    for (let key in this.state.fields) {
-      if (!this.validaters[key](this.state.fields[key])) {
-        errors[key] = true;
-        isFormValid = false;
-      }
-    }
+  formChange = (e: any) => {
     this.setState({
-      isFormValid: isFormValid,
-      errors: errors
+      form: this.state.form
     });
   }
 
@@ -116,21 +104,21 @@ export class CharactorForm extends React.Component<CharactorForm.Props, Characto
     return (
       <section className="contact-form">
         <h2 className="home-title">登録</h2>
-        <form onSubmit={this.onSubmit}>
+        <form onSubmit={this.onSubmit} onChange={this.formChange}>
           <div className="row">
             <div className="form-group col-7">
               <label className="form-label required">名前</label>
-              <input className={`form-input ${ this.state.errors['name'] ? 'invalid' : '' }`}
+              <input className={`form-input ${ !this.state.form.fields['name'].isValid && this.state.form.fields['name'].isTouched ? 'invalid' : '' }`}
                      name="name"
-                     value={this.state.fields['name']}
+                     value={this.state.form.fields['name'].value}
                      onChange={this.handleChange} />
               <span className="error-msg">名前には1文字以上10文字以下入力してください。</span>
             </div>
             <div className="form-group col-5">
               <label className="form-label required">年齢</label>
-              <input className={`form-input ${ this.state.errors['age'] ? 'invalid' : '' }`}
+              <input className={`form-input ${ !this.state.form.fields['age'].isValid && this.state.form.fields['age'].isTouched ? 'invalid' : '' }`}
                      name="age"
-                     value={this.state.fields['age']}
+                     value={this.state.form.fields['age'].value}
                      onChange={this.handleChange} />
               <span className="error-msg">年齢には3桁以下の数字で入力してください。</span>
             </div>
@@ -138,19 +126,18 @@ export class CharactorForm extends React.Component<CharactorForm.Props, Characto
           <div className="row">
             <div className="form-group col-12">
               <label className="form-label">コメント</label>
-              <textarea className={`form-input ${ this.state.errors['comment'] ? 'invalid' : '' }`}
+              <textarea className={`form-input ${ !this.state.form.fields['comment'].isValid && this.state.form.fields['comment'].isTouched ? 'invalid' : '' }`}
                         rows={5}
                         name="comment"
-                        value={this.state.fields['comment']}
-                        onChange={this.handleChange}
-                        onBlur={this.handleChange}>
+                        value={this.state.form.fields['comment'].value}
+                        onChange={this.handleChange}>
               </textarea>
               <span className="error-msg">This field is required</span>
             </div>
           </div>
           <div className="row">
             <div className="btn-group col-12">
-              <button type="submit" className={`btn btn-primary btn-animated ${this.state.isProcessing ? 'show' : 'hide'}`} disabled={this.state.isProcessing || !this.state.isFormValid}>
+              <button type="submit" className={`btn btn-primary btn-animated ${this.state.isProcessing ? 'show' : 'hide'}`} disabled={this.state.isProcessing || !this.state.form.isValid}>
                 <span className="animated-icon">
                   <i className="fa fa-spinner fa-spin"></i>
                 </span>
