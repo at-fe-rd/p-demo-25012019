@@ -1,6 +1,6 @@
 import { handleActions } from 'redux-actions';
 import { RootState } from 'app/reducers/state';
-import { CharacterActions } from './charactor.actions';
+import { CharacterActions } from './character.actions';
 import { CharacterModel } from 'app/models';
 
 const initialState: RootState.PageState = [];

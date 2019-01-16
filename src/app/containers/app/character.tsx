@@ -6,9 +6,9 @@ import { RootState } from 'app/reducers';
 import { omit } from 'app/utils';
 import { Header, Footer, Alert } from 'app/components';
 import { AlertActions } from 'app/components/shared/alert/alert.actions';
-import { CharacterActions } from 'app/components/features/charactor/charactor.actions';
-import { CharactorForm } from 'app/components/features/charactor/components/charactor-form';
-import { CharactorList } from 'app/components/features/charactor/components/charactor-list';
+import { CharacterActions } from 'app/components/features/character/character.actions';
+import { CharacterForm } from 'app/components/features/character/components/character-form';
+import { CharacterList } from 'app/components/features/character/components/character-list';
 
 export namespace App {
   export interface Props extends RouteComponentProps<void> {
@@ -42,11 +42,11 @@ export class App extends React.Component<App.Props> {
         <Alert notification={notification} alerter={alertActions} />
         <Header />
         <div className="container">
-          <CharactorForm onSave={actions.newCharactor} alerter={alertActions} />
-          <CharactorList data={pageData}
-                         onRefresh={actions.indexCharactor}
-                         onDelete={actions.deleteCharactor}
-                         onUpdate={actions.updateCharactor}
+          <CharacterForm onSave={actions.newCharacter} alerter={alertActions} />
+          <CharacterList data={pageData}
+                         onRefresh={actions.indexCharacter}
+                         onDelete={actions.deleteCharacter}
+                         onUpdate={actions.updateCharacter}
                          alert={alertActions} />
         </div>
         <Footer />

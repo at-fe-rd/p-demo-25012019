@@ -3,7 +3,7 @@ import { CharacterModel } from 'app/models/CharacterModel';
 import { API } from 'app/utils/api';
 import { FormValidation } from 'app/utils/form-validation';
 
-export namespace CharactorForm {
+export namespace CharacterForm {
   export interface Props {
     onSave: (obj: CharacterModel) => void;
     alerter: any;
@@ -14,9 +14,9 @@ export namespace CharactorForm {
   }
 }
 
-export class CharactorForm extends React.Component<CharactorForm.Props, CharactorForm.State> {
+export class CharacterForm extends React.Component<CharacterForm.Props, CharacterForm.State> {
 
-  constructor(props: CharactorForm.Props) {
+  constructor(props: CharacterForm.Props) {
     super(props);
     this.state = {
       isProcessing: false,

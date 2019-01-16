@@ -1,9 +1,9 @@
 import * as React from 'react';
-import { CharacterItem } from './charactor-item';
+import { CharacterItem } from './character-item';
 import { API } from 'app/utils/api';
 import { CharacterModel } from 'app/models/CharacterModel';
 
-export namespace CharactorList {
+export namespace CharacterList {
   export interface Props {
     onRefresh: (data: any) => void;
     onUpdate: (character: CharacterModel) => void;
@@ -19,9 +19,9 @@ export namespace CharactorList {
   }
 }
 
-export class CharactorList extends React.Component<CharactorList.Props, CharactorList.State> {
+export class CharacterList extends React.Component<CharacterList.Props, CharacterList.State> {
 
-  constructor(props: CharactorList.Props, state: CharactorList.State) {
+  constructor(props: CharacterList.Props, state: CharacterList.State) {
     super(props, state);
     this.state = {
       canLoadmore: true,
@@ -89,9 +89,9 @@ export class CharactorList extends React.Component<CharactorList.Props, Characto
               <CharacterItem
                 key={item.id}
                 character={item}
-                updateCharactor={onUpdate}
-                deleteCharactor={onDelete}
-                selectCharactor={this.onSelect}
+                updateCharacter={onUpdate}
+                deleteCharacter={onDelete}
+                selectCharacter={this.onSelect}
                 isVisible={selectedItem === item.id}
                 alert={alert}/>
             ))}

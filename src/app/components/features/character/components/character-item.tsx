@@ -4,11 +4,11 @@ import { CharacterModel } from 'app/models/CharacterModel';
 import { ConfirmDialog } from '../../../shared/dialog/dialog.component'
 export namespace CharacterItem {
   export interface Props {
-    updateCharactor: (character: CharacterModel) => void;
-    deleteCharactor: (id: number) => void;
+    updateCharacter: (character: CharacterModel) => void;
+    deleteCharacter: (id: number) => void;
     character: any;
     alert: any;
-    selectCharactor: any;
+    selectCharacter: any;
     isVisible: boolean;
   }
 }
@@ -19,10 +19,10 @@ export class CharacterItem extends React.Component<CharacterItem.Props> {
   }
 
   showPopover = () => {
-    this.props.selectCharactor(this.props.character.id);
+    this.props.selectCharacter(this.props.character.id);
   }
   hidePopover = () => {
-    this.props.selectCharactor(0);
+    this.props.selectCharacter(0);
   }
 
   handleDelete = () => {
@@ -35,7 +35,7 @@ export class CharacterItem extends React.Component<CharacterItem.Props> {
 
   onDelete() {
     API.delete(`/characters/${this.props.character.id}`).then((res: any) => {
-      this.props.deleteCharactor(this.props.character.id);
+      this.props.deleteCharacter(this.props.character.id);
       this.props.alert.show({
         type: 'warning',
         msg: `${this.props.character.name}を削除しますした。`
@@ -51,7 +51,7 @@ export class CharacterItem extends React.Component<CharacterItem.Props> {
 
   onUpdate = () => {
     API.patch(`/characters/${this.props.character.id}`, this.props.character).then((res: any) => {
-      this.props.updateCharactor(res.data);
+      this.props.updateCharacter(res.data);
       this.props.alert.show({
         type: 'success',
         msg: `${res.data.name}の年齢は${res.data.age}を上げました。`

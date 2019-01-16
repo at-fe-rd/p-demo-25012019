@@ -1,4 +1,4 @@
-/** CharactorMVC model definitions **/
+/** CharacterMVC model definitions **/
 
 export interface CharacterModel {
   id?: number;
