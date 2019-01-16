@@ -85,16 +85,26 @@ export class CharacterList extends React.Component<CharacterList.Props, Characte
             </tr>
           </thead>
           <tbody>
-            {data.map((item: any, i: number) => (
-              <CharacterItem
-                key={item.id}
-                character={item}
-                updateCharacter={onUpdate}
-                deleteCharacter={onDelete}
-                selectCharacter={this.onSelect}
-                isVisible={selectedItem === item.id}
-                alert={alert}/>
-            ))}
+            {
+              data && data.length
+              ?
+              data.map((item: any, i: number) => (
+                <CharacterItem
+                  key={item.id}
+                  character={item}
+                  updateCharacter={onUpdate}
+                  deleteCharacter={onDelete}
+                  selectCharacter={this.onSelect}
+                  isVisible={selectedItem === item.id}
+                  alert={alert}/>
+              ))
+              :
+              (
+                <tr>
+                  <td colSpan={3} className="empty-data">キャラクター</td>
+                </tr>
+              )
+          }
           </tbody>
         </table>
         <div className="view-more center-text">

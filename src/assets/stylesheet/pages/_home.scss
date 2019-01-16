@@ -53,3 +53,6 @@
     width: 100%;
   }
 }
+.empty-data {
+  font-size: map-get($font-size, md);
+}
