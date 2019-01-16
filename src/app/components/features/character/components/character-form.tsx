@@ -33,6 +33,13 @@ export class CharacterForm extends React.Component<CharacterForm.Props, Characte
             character: (value: any) => {
               const regexp = /^.{1,10}$/;
               return regexp.test(value);
+            },
+            required: (value: any) => {
+              if (value) {
+                return value.trim() !== '';
+              } else {
+                return false;
+              }
             }
           }
         },
