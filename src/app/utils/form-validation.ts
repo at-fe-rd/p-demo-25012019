@@ -1,5 +1,3 @@
-// import { isEmpty } from 'app/utils/data';
-
 export interface FormField {
   isValid: boolean;
   isTouched: boolean;
@@ -49,6 +47,7 @@ export class FormValidation {
     let rule: any;
     field.isTouched = hasChanged;
     field.isValid = true;
+    field.errors = {};
     for (let key in field.rules) {
       rule = field.rules[key];
       if (!rule(field.value)) {

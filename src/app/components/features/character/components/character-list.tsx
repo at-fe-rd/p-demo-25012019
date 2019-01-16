@@ -87,8 +87,7 @@ export class CharacterList extends React.Component<CharacterList.Props, Characte
           <tbody>
             {
               data && data.length
-              ?
-              data.map((item: any, i: number) => (
+              ? data.map((item: any, i: number) => (
                 <CharacterItem
                   key={item.id}
                   character={item}
@@ -98,8 +97,7 @@ export class CharacterList extends React.Component<CharacterList.Props, Characte
                   isVisible={selectedItem === item.id}
                   alert={alert}/>
               ))
-              :
-              (
+              : (
                 <tr>
                   <td colSpan={3} className="empty-data">キャラクター</td>
                 </tr>
