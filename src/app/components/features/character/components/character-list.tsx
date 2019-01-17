@@ -76,6 +76,7 @@ export class CharacterList extends React.Component<CharacterList.Props, Characte
         <table className="table table-striped table-vm">
           <thead>
             <tr>
+              <th className="col-1">#</th>
               <th className="col-3 no-wrap">
                 <span>名前</span>
                 <span> (年齢)</span>
@@ -89,6 +90,7 @@ export class CharacterList extends React.Component<CharacterList.Props, Characte
               data && data.length ? data.map((item: any, i: number) => (
                 <CharacterItem
                   key={item.id}
+                  order={i + 1}
                   character={item}
                   updateCharacter={onUpdate}
                   deleteCharacter={onDelete}
@@ -97,7 +99,7 @@ export class CharacterList extends React.Component<CharacterList.Props, Characte
                   alert={alert}/>
               )) : (
                 <tr>
-                  <td colSpan={3} className="text-center empty-data">キャラクターがまだありませんです。</td>
+                  <td colSpan={4} className="text-center empty-data">キャラクターがまだありませんです。</td>
                 </tr>
               )
           }

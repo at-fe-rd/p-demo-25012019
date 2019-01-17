@@ -6,6 +6,7 @@ export namespace CharacterItem {
   export interface Props {
     updateCharacter: (character: CharacterModel) => void;
     deleteCharacter: (id: number) => void;
+    order: number;
     character: any;
     alert: any;
     selectCharacter: any;
@@ -66,14 +67,15 @@ export class CharacterItem extends React.Component<CharacterItem.Props> {
   }
 
   render() {
-    const { character, isVisible } = this.props;
+    const { character, isVisible, order } = this.props;
     return (
       <tr>
+        <td className="col-1 no-wrap">{order}</td>
         <td className="col-3 no-wrap">
           <span>{character.name}</span>
           <span> ({character.age})</span>
         </td>
-        <td className="col-8 comment">
+        <td className="col-7 comment">
           {character.comment}
         </td>
         <td className="col-1 no-wrap">
