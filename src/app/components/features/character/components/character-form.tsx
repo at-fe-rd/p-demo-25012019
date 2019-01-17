@@ -128,9 +128,11 @@ export class CharacterForm extends React.Component<CharacterForm.Props, Characte
                      value={this.state.form.fields['age'].value || ''}
                      onChange={this.handleChange} />
               {
-                this.state.form.fields['age'].errors['age']
-                ? ( <span className="error-msg">年齢には3桁以下の数字で入力してください。</span> )
-                : ( <span className="error-msg">年齢には1以上の数字を入力してくさい。</span> )
+                this.state.form.fields['age'].errors['age'] ? (
+                  <span className="error-msg">年齢には3桁以下の数字で入力してください。</span>
+                ) : (
+                  <span className="error-msg">年齢には1以上の数字を入力してくさい。</span>
+                )
               }
             </div>
           </div>
