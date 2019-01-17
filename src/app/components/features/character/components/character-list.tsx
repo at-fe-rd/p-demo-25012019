@@ -99,7 +99,7 @@ export class CharacterList extends React.Component<CharacterList.Props, Characte
               ))
               : (
                 <tr>
-                  <td colSpan={3} className="empty-data">キャラクター</td>
+                  <td colSpan={3} className="empty-data">キャラクターがまだありませんです。</td>
                 </tr>
               )
           }
