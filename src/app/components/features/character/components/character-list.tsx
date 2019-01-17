@@ -97,7 +97,7 @@ export class CharacterList extends React.Component<CharacterList.Props, Characte
                   alert={alert}/>
               )) : (
                 <tr>
-                  <td colSpan={3} className="empty-data">キャラクターがまだありませんです。</td>
+                  <td colSpan={3} className="text-center empty-data">キャラクターがまだありませんです。</td>
                 </tr>
               )
           }
