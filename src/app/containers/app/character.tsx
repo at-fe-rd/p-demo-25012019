@@ -20,7 +20,7 @@ export namespace App {
 }
 
 @connect(
-  (state: any, ownProps): Pick<App.Props, any> => {
+  (state: any): Pick<App.Props, any> => {
     return { pageData: state.pageData, notification: state.notification };
   },
   (dispatch: Dispatch): Pick<App.Props, any> => ({
