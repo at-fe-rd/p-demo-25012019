@@ -4,26 +4,37 @@ import { API } from 'app/utils/api';
 import { FormValidation } from 'app/utils/form-validation';
 
 export namespace CharacterForm {
+  // character form property definitions
   export interface Props {
     onSave: (obj: CharacterModel) => void;
     alerter: any;
   }
+  // character form state definitions
   export interface State {
-    isProcessing: boolean;
-    form: FormValidation;
+    isProcessing: boolean; // to check the form is submitting or not, it helps handle UI/UX
+    form: FormValidation; // form validation
   }
 }
 
 export class CharacterForm extends React.Component<CharacterForm.Props, CharacterForm.State> {
   constructor(props: CharacterForm.Props) {
     super(props);
+    // initial state of this component
     this.state = {
       isProcessing: false,
       form: this.initForm()
     };
   }
 
+  /**
+   * Initial Form
+   * @output a new form validation is an object
+   * Seeing FormValidation definitions for more detail
+   */
   initForm = () => {
+    /**
+     * define fields value and rule to validate
+     */
     return new FormValidation({
       name: {
         value: '',
@@ -66,12 +77,16 @@ export class CharacterForm extends React.Component<CharacterForm.Props, Characte
   };
 
   /**
-   *
+   * Register new character
+   * @param data is a Character object
+   * Call api to register a new character
    */
   register = (data: CharacterModel) => {
     API.post('/characters', data)
       .then((res: any) => {
+        // call action newCharacter throught property onSave to update state of character list
         this.props.onSave(res.data);
+        // display message after register sucessfully
         this.props.alerter.show({
           type: 'success',
           msg: `${res.data.name}を追加しました。`
@@ -79,6 +94,7 @@ export class CharacterForm extends React.Component<CharacterForm.Props, Characte
         this.resetForm();
       })
       .catch((err: any) => {
+        // display error message in case failed to register
         this.props.alerter.show({
           type: 'danger',
           msg: '登録が失敗しました。後でもう一度やり直してください。',
@@ -97,12 +113,20 @@ export class CharacterForm extends React.Component<CharacterForm.Props, Characte
     });
   };
 
+  /**
+   * Handle event change a specific field
+   * @param event is a object
+   */
   handleChange = (e: any) => {
     const { name, value } = e.target;
+    /**
+     * call method field change which is provide by form field validation
+     */
     this.state.form.fieldChange(name, value);
   };
 
   formChange = (e: any) => {
+    // update form state
     this.setState({
       form: this.state.form
     });
