@@ -1,12 +1,11 @@
 import * as React from 'react';
 import { CharacterItem } from './character-item';
-import { API } from 'app/utils/api';
 import { CharacterModel } from 'app/models/character.model';
 
 export namespace CharacterList {
   // Character List property definitions
   export interface Props {
-    onRefresh: (data: any) => void; // action fetch data
+    onRefresh: (offset: any) => any; // action fetch data
     onUpdate: (character: CharacterModel) => void; // action update character
     onDelete: (id: number) => void; // action delete character
     alert: any; // alert object
@@ -50,29 +49,23 @@ export class CharacterList extends React.Component<CharacterList.Props, Characte
    * Call api to fetch character list
    */
   fetchData = () => {
-    API.get(`/characters?offset=${this.props.data.length}`)
-      .then((res: any) => {
-        // call action indexCharacter throught property onRefresh to update state of character list
-        this.props.onRefresh(res.data.characters);
-        // check and update state for Loadmore button
-        this.setState({
-          canLoadmore: res.data.loadMore
-        });
-        this.setState({
-          isLoading: false
-        });
-      })
-      .catch((err: any) => {
-        // display error message if can not character list
-        this.props.alert.show({
-          type: 'danger',
-          msg: 'データ接続が失敗しました。後でもう一度やり直してください。',
-          timeout: 10000
-        });
-        this.setState({
-          isLoading: false
-        });
+    this.props.onRefresh(this.props.data.length).then((res: any) => {
+      console.log(res);
+      // check and update state for Loadmore button
+      this.setState({
+        canLoadmore: res,
+        isLoading: false
       });
+    }).catch((err: any) => {
+      this.props.alert.show({
+        type: 'danger',
+        msg: 'データ接続が失敗しました。後でもう一度やり直してください。',
+        timeout: 10000
+      });
+      this.setState({
+        isLoading: false
+      });
+    });
   };
 
   /**

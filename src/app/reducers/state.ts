@@ -4,6 +4,6 @@ export interface RootState {
 }
 
 export namespace RootState {
-  export type PageState = any[];
+  export type PageState = any;
   export type NotificationState = {};
 }
