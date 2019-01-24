@@ -14,7 +14,7 @@ export const characterReducer = handleActions<RootState.PageState, CharacterMode
       return action.payload ? [action.payload, ...state] : state;
     },
     [CharacterActions.Type.CHARACTER_UPDATE]: (state, action: any) => {
-      return state.map((item) => item.id === action.payload.id ? action.payload : item );
+      return state.map((item) => (item.id === action.payload.id ? action.payload : item));
     },
     [CharacterActions.Type.CHARACTER_DELETE]: (state, action) => {
       return state.filter((item: CharacterModel) => item.id !== (action.payload as any));

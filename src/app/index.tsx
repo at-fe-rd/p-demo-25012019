@@ -8,4 +8,3 @@ export const App = hot(module)(() => (
     <Route path="/" component={MainApp} />
   </Switch>
 ));
- 

@@ -4,7 +4,7 @@ export interface FormField {
   value: any;
   rules?: any;
   errors?: any;
-  onChange?: any; 
+  onChange?: any;
   [key: string]: any;
 }
 
@@ -13,7 +13,6 @@ export interface FormValidation {
 }
 
 export class FormValidation {
-
   form: any;
 
   constructor(form: any) {
@@ -28,7 +27,7 @@ export class FormValidation {
         rules: form[key].rules || {},
         errors: {},
         onChange: this._handleChange
-      }
+      };
       if (!this._fieldValidate(fields[key], false)) {
         isValid = false;
       }
@@ -59,11 +58,11 @@ export class FormValidation {
       this._updateData();
     }
     return field.isValid;
-  }
+  };
 
   private _handleChange = (value: any) => {
     this._fieldValidate(this, value);
-  }
+  };
 
   private _updateData = () => {
     let data: any = {};
@@ -76,12 +75,12 @@ export class FormValidation {
     }
     this.form.data = data;
     this.form.isValid = isValid;
-  }
+  };
 
   private _fieldChange = (name: string, value: any) => {
     this.form.fields[name].value = value;
     this._fieldValidate(this.form.fields[name]);
-  }
+  };
 
   validation() {
     return this.form;

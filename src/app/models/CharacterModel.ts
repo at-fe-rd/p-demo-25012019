@@ -5,11 +5,9 @@ export interface CharacterModel {
   name: string;
   age: number;
   comment?: string;
-  [key:string]: any;
+  [key: string]: any;
 }
 
 export namespace CharacterModel {
-  export enum Filter {
-
-  }
+  export enum Filter {}
 }

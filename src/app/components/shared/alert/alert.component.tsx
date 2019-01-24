@@ -20,7 +20,6 @@ export interface Alert {
 }
 
 export class Alert extends React.Component<Alert.Props, Alert.State> {
-
   private timer: any;
   private timerClear: any;
 
@@ -41,7 +40,7 @@ export class Alert extends React.Component<Alert.Props, Alert.State> {
       this.props.alerter.clear();
       clearTimeout(this.timerClear);
     }, 1000);
-  }
+  };
 
   showMe = () => {
     clearTimeout(this.timer);
@@ -52,7 +51,7 @@ export class Alert extends React.Component<Alert.Props, Alert.State> {
       },
       this.autoHide
     );
-  }
+  };
 
   autoHide() {
     this.timer = setTimeout(() => {
@@ -71,11 +70,9 @@ export class Alert extends React.Component<Alert.Props, Alert.State> {
     return (
       <div className={`alert alert-${type} ${this.state.cls}`}>
         <div className="alert-icon">
-          <i className="fa fa-info-circle" aria-hidden="true"></i>
+          <i className="fa fa-info-circle" aria-hidden="true" />
         </div>
-        <div className="alert-content">
-          {msg}
-        </div>
+        <div className="alert-content">{msg}</div>
         {/* <div className="alert-close">
           <i className="fa fa-times"></i>
         </div> */}

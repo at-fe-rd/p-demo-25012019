@@ -28,9 +28,7 @@ export namespace App {
     alertActions: bindActionCreators(omit(AlertActions, 'Type'), dispatch)
   })
 )
-
 export class App extends React.Component<App.Props> {
-
   constructor(props: App.Props, context?: any) {
     super(props, context);
   }
@@ -43,11 +41,13 @@ export class App extends React.Component<App.Props> {
         <Header />
         <div className="container">
           <CharacterForm onSave={actions.newCharacter} alerter={alertActions} />
-          <CharacterList data={pageData}
-                         onRefresh={actions.indexCharacter}
-                         onDelete={actions.deleteCharacter}
-                         onUpdate={actions.updateCharacter}
-                         alert={alertActions} />
+          <CharacterList
+            data={pageData}
+            onRefresh={actions.indexCharacter}
+            onDelete={actions.deleteCharacter}
+            onUpdate={actions.updateCharacter}
+            alert={alertActions}
+          />
         </div>
         <Footer />
       </div>

@@ -4,4 +4,4 @@ import { characterReducer } from './character/character.reducers';
 // doesn't go well with redux@4
 export const featureReducer: any = {
   pageData: characterReducer
-}
+};

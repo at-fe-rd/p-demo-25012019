@@ -3,8 +3,8 @@ export function cloneDeep(obj: any) {
 }
 
 export function isEmpty(obj: any) {
-  for(var prop in obj) {
-    if(obj.hasOwnProperty(prop)) {
+  for (var prop in obj) {
+    if (obj.hasOwnProperty(prop)) {
       return false;
     }
   }

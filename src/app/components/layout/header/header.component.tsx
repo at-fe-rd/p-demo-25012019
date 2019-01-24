@@ -20,8 +20,8 @@ export class Header extends React.Component<Header.Props> {
             {/* <Link to="/about">
               <img alt="asiantech" src={"../assets/images/logo.png"}>
             </Link> */}
-            <a href={"/about"}>
-              <img className="logo" src={"./assets/images/logo.png"} alt="asiantech" />
+            <a href={'/about'}>
+              <img className="logo" src={'./assets/images/logo.png'} alt="asiantech" />
             </a>
           </div>
         </div>
