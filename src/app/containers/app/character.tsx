@@ -11,14 +11,18 @@ import { CharacterForm } from 'app/components/features/character/components/char
 import { CharacterList } from 'app/components/features/character/components/character-list';
 
 export namespace App {
+  // Character container property definitions
   export interface Props extends RouteComponentProps<void> {
-    pageData: RootState.PageState;
-    notification: RootState.NotificationState;
-    actions: CharacterActions;
-    alertActions: AlertActions;
+    pageData: RootState.PageState; // Main data of page
+    notification: RootState.NotificationState; // data for notification
+    actions: CharacterActions; // Character actions
+    alertActions: AlertActions; // Notification actions
   }
 }
 
+/**
+ * This decorator help component can communicate with Redux
+ */
 @connect(
   (state: any): Pick<App.Props, any> => {
     return { pageData: state.pageData, notification: state.notification };
