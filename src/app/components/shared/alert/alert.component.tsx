@@ -39,7 +39,7 @@ export class Alert extends React.Component<Alert.Props, Alert.State> {
       this.props.alerter.clear();
       clearTimeout(this.timerClear);
     }, 1000);
-  };
+  }
 
   showMe = () => {
     clearTimeout(this.timer);
@@ -50,7 +50,7 @@ export class Alert extends React.Component<Alert.Props, Alert.State> {
       },
       this.autoHide
     );
-  };
+  }
 
   autoHide() {
     this.timer = setTimeout(() => {
