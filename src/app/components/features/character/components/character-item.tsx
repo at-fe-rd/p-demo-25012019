@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { API } from 'app/utils/api';
-import { CharacterModel } from 'app/models/CharacterModel';
+import { CharacterModel } from 'app/models/character.model';
 import { ConfirmDialog } from '../../../shared/dialog/dialog.component';
 
 export namespace CharacterItem {

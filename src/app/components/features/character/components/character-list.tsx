@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { CharacterItem } from './character-item';
 import { API } from 'app/utils/api';
-import { CharacterModel } from 'app/models/CharacterModel';
+import { CharacterModel } from 'app/models/character.model';
 
 export namespace CharacterList {
   // Character List property definitions

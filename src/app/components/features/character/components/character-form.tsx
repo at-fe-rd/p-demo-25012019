@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { CharacterModel } from 'app/models/CharacterModel';
+import { CharacterModel } from 'app/models/character.model';
 import { API } from 'app/utils/api';
 import { FormValidation } from 'app/utils/form-validation';
 
