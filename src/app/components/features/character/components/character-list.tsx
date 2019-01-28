@@ -6,7 +6,7 @@ import { CharacterModel } from 'app/models/character.model';
 export namespace CharacterList {
   // Character List property definitions
   export interface Props {
-    onRefresh: (data: any) => void; // action fetch data
+    onLoad: (data: any) => void; // action fetch data
     onUpdate: (character: CharacterModel) => void; // action update character
     onDelete: (id: number) => void; // action delete character
     alert: any; // alert object
@@ -51,15 +51,14 @@ export class CharacterList extends React.Component<CharacterList.Props, Characte
    * Note: We can use redux-thunk to make async action instead of this function
    */
   fetchData = () => {
+    // fetch n records from offset
     API.get(`/characters?offset=${this.props.data.length}`)
       .then((res: any) => {
-        // call action indexCharacter throught property onRefresh to update state of character list
-        this.props.onRefresh(res.data.characters);
+        // call action indexCharacter throught property onLoad to update state of character list
+        this.props.onLoad(res.data.characters);
         // check and update state for Loadmore button
         this.setState({
-          canLoadmore: res.data.loadMore
-        });
-        this.setState({
+          canLoadmore: res.data.loadMore,
           isLoading: false
         });
       })

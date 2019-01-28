@@ -8,7 +8,7 @@ export namespace CharacterActions {
     CHARACTER_UPDATE = 'CHARACTER_UPDATE',
     CHARACTER_DELETE = 'CHARACTER_DELETE'
   }
-  export const indexCharacter = createAction<any>(Type.CHARACTER_LIST);
+  export const listCharacter = createAction<any>(Type.CHARACTER_LIST);
   export const newCharacter = createAction<CharacterModel>(Type.CHARACTER_NEW);
   export const updateCharacter = createAction<CharacterModel>(Type.CHARACTER_UPDATE);
   export const deleteCharacter = createAction<CharacterModel['id']>(Type.CHARACTER_DELETE);

@@ -47,7 +47,7 @@ export class App extends React.Component<App.Props> {
           <CharacterForm onSave={actions.newCharacter} alerter={alertActions} />
           <CharacterList
             data={pageData}
-            onRefresh={actions.indexCharacter}
+            onLoad={actions.listCharacter}
             onDelete={actions.deleteCharacter}
             onUpdate={actions.updateCharacter}
             alert={alertActions}
