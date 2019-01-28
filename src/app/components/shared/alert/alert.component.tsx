@@ -55,6 +55,7 @@ export class Alert extends React.Component<Alert.Props, Alert.State> {
   autoHide() {
     this.timer = setTimeout(() => {
       this.hideMe();
+      clearTimeout(this.timer);
     }, 3000);
   }
 
