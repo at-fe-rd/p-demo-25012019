@@ -36,7 +36,7 @@ See also: [react-mobx-typescript-boilerplate](https://github.com/rokoroku/react-
 ## Installation
 
 ```
-$ npm ci
+$ npm install
 ```
 
 ## Running
@@ -51,7 +51,7 @@ $ npm start
 $ npm run build
 ```
 
-## Deploy (to the [GitHub Pages](https://pages.github.com/))
+## Deploy (to the server)
 
 ```
 $ npm run deploy

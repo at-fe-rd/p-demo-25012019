@@ -16,8 +16,8 @@ export namespace CharacterList {
   // Character List state definitions
   export interface State {
     isLoading?: boolean; // to check the data list is updating, it helps handle UI/UX
-    canLoadmore: boolean; // to check and control button load more on UI 
-    selectedItem: number | undefined; // to check a specific item is selected, it help control a confirm dialog 
+    canLoadmore: boolean; // to check and control button load more on UI
+    selectedItem: number | undefined; // to check a specific item is selected, it help control a confirm dialog
   }
 }
 
