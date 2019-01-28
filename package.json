@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "private": true,
   "description": "A frontend boilerplate with React, Redux and Typescript",
-  "homepage": "https://rokoroku.github.io/typescript-react-redux-boilerplate",
   "main": "index.js",
   "scripts": {
     "deploy": "bash deploy/staging.sh --stg",
