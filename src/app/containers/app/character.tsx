@@ -50,7 +50,7 @@ export class App extends React.Component<App.Props> {
             onLoad={actions.listCharacter}
             onDelete={actions.deleteCharacter}
             onUpdate={actions.updateCharacter}
-            alert={alertActions}
+            alerter={alertActions}
           />
         </div>
         <Footer />

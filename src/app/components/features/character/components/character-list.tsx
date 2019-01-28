@@ -9,7 +9,7 @@ export namespace CharacterList {
     onLoad: (data: any) => void; // action fetch data
     onUpdate: (character: CharacterModel) => void; // action update character
     onDelete: (id: number) => void; // action delete character
-    alert: any; // alert object
+    alerter: any; // alert object
     data: any; // character list
   }
 
@@ -64,7 +64,7 @@ export class CharacterList extends React.Component<CharacterList.Props, Characte
       })
       .catch((err: any) => {
         // display error message if can not character list
-        this.props.alert.show({
+        this.props.alerter.show({
           type: 'danger',
           msg: 'データ接続が失敗しました。後でもう一度やり直してください。',
           timeout: 10000
@@ -85,7 +85,7 @@ export class CharacterList extends React.Component<CharacterList.Props, Characte
   };
 
   render() {
-    const { onDelete, onUpdate, data, alert } = this.props;
+    const { onDelete, onUpdate, data, alerter } = this.props;
     const { selectedItem, canLoadmore } = this.state;
     return (
       <section className="list-users">
@@ -113,7 +113,7 @@ export class CharacterList extends React.Component<CharacterList.Props, Characte
                   deleteCharacter={onDelete}
                   selectCharacter={this.onSelect}
                   isVisible={selectedItem === item.id}
-                  alert={alert}
+                  alerter={alerter}
                 />
               ))
             ) : (
