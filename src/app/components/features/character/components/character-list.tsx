@@ -48,6 +48,7 @@ export class CharacterList extends React.Component<CharacterList.Props, Characte
   /**
    * Fetch Data
    * Call api to fetch character list
+   * Note: We can use redux-thunk to make async action instead of this function
    */
   fetchData = () => {
     API.get(`/characters?offset=${this.props.data.length}`)

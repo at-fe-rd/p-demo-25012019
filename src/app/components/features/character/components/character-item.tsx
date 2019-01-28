@@ -42,6 +42,7 @@ export class CharacterItem extends React.Component<CharacterItem.Props> {
   /**
    * Delete character
    * Call api to delete character
+   * Note: We can use redux-thunk to make async action instead of this function
    */
   onDelete() {
     API.delete(`/characters/${this.props.character.id}`)
@@ -67,6 +68,7 @@ export class CharacterItem extends React.Component<CharacterItem.Props> {
   /**
    * Update character
    * Call api to update character
+   * Note: We can use redux-thunk to make async action instead of this function
    */
   onUpdate = () => {
     API.patch(`/characters/${this.props.character.id}`, this.props.character)

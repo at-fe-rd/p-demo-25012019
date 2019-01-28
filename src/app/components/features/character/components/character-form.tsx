@@ -80,6 +80,7 @@ export class CharacterForm extends React.Component<CharacterForm.Props, Characte
    * Register new character
    * @param data is a Character object
    * Call api to register a new character
+   * Note: We can use redux-thunk to make async action instead of this function
    */
   register = (data: CharacterModel) => {
     API.post('/characters', data)
